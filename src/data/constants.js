@@ -38,23 +38,37 @@ export const PORTFOLIO_DATA = [
   {
     id: 1,
     title: "Dự án quay phim doanh nghiệp",
-    description: "Video giới thiệu công ty chuyên nghiệp với chất lượng 4K",
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&h=300&fit=crop",
-    category: "Doanh nghiệp"
+    description: "Lorem ipsum dolor sit amet consectetur. Laoreet arcu pulvinar mus pulvinar non gravida eu sagittis gravida. Nulla sociis at aliquam turpis lacus eget lacus. Laoreet in nibh aliquam aenean quis.",
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&h=400&fit=crop",
+    category: "Tên"
   },
   {
     id: 2,
     title: "Quay phim sự kiện",
-    description: "Ghi lại những khoảnh khắc đáng nhớ trong sự kiện của bạn",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop",
-    category: "Sự kiện"
+    description: "Lorem ipsum dolor sit amet consectetur. Laoreet arcu pulvinar mus pulvinar non gravida eu sagittis gravida. Nulla sociis at aliquam turpis lacus eget lacus. Laoreet in nibh aliquam aenean quis.",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=400&fit=crop",
+    category: "Tên"
   },
   {
     id: 3,
     title: "Phim quảng cáo sản phẩm", 
-    description: "Tạo ra những video marketing ấn tượng và hiệu quả",
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=300&fit=crop",
-    category: "Quảng cáo"
+    description: "Lorem ipsum dolor sit amet consectetur. Laoreet arcu pulvinar mus pulvinar non gravida eu sagittis gravida. Nulla sociis at aliquam turpis lacus eget lacus. Laoreet in nibh aliquam aenean quis.",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=400&fit=crop",
+    category: "Tên"
+  },
+  {
+    id: 4,
+    title: "Quay phim wedding",
+    description: "Lorem ipsum dolor sit amet consectetur. Laoreet arcu pulvinar mus pulvinar non gravida eu sagittis gravida. Nulla sociis at aliquam turpis lacus eget lacus. Laoreet in nibh aliquam aenean quis.",
+    image: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=400&fit=crop",
+    category: "Tên"
+  },
+  {
+    id: 5,
+    title: "Phim tài liệu",
+    description: "Lorem ipsum dolor sit amet consectetur. Laoreet arcu pulvinar mus pulvinar non gravida eu sagittis gravida. Nulla sociis at aliquam turpis lacus eget lacus. Laoreet in nibh aliquam aenean quis.",
+    image: "https://images.unsplash.com/photo-1478720568477-b0829c2b37eb?w=400&h=400&fit=crop",
+    category: "Tên"
   }
 ];
 

@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
-const NewPortfolioCarousel = () => {
+const PortfolioCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef(null);
 
@@ -48,7 +48,6 @@ const NewPortfolioCarousel = () => {
         </h2>
         
         <div className="relative max-w-5xl mx-auto">
-          {/* Custom Navigation Arrows */}
           <button 
             onClick={handlePrev}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 p-3 bg-white shadow-lg rounded-full hover:bg-gray-50 transition-colors"
@@ -65,7 +64,6 @@ const NewPortfolioCarousel = () => {
             <ChevronRight className="w-6 h-6 text-gray-600" />
           </button>
 
-          {/* Swiper Container */}
           <div className="px-16">
             <Swiper
               ref={swiperRef}
@@ -118,30 +116,24 @@ const NewPortfolioCarousel = () => {
                         ${isActive ? 'scale-100 z-20' : 'scale-90 z-10'}
                       `}
                     >
-                      {/* Background Image */}
                       <img 
                         src={slide.image} 
                         alt={slide.title}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       />
                       
-                      {/* Center Card Content */}
                       {isActive ? (
                         <>
-                          {/* Dark Gradient Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                           
-                          {/* Content Overlay */}
                           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <div className="space-y-3">
-                              {/* Category Tag */}
                               <div className="inline-block">
                                 <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-semibold">
                                   {slide.category} - Phong cách
                                 </span>
                               </div>
                               
-                              {/* Description */}
                               <p className="text-sm leading-relaxed opacity-90 line-clamp-3">
                                 {slide.description}
                               </p>
@@ -150,7 +142,6 @@ const NewPortfolioCarousel = () => {
                         </>
                       ) : (
                         <>
-                          {/* Side Cards Overlay */}
                           <div className="absolute inset-0 bg-black/40 transition-all duration-300"></div>                                        
                         </>
                       )}
@@ -161,7 +152,6 @@ const NewPortfolioCarousel = () => {
             </Swiper>
           </div>
 
-          {/* Custom Dots Pagination */}
           <div className="flex justify-center mt-8 space-x-2">
             {PORTFOLIO_DATA.map((_, index) => (
               <button
@@ -179,7 +169,6 @@ const NewPortfolioCarousel = () => {
             ))}
           </div>
 
-          {/* Progress Indicator */}
           <div className="flex justify-center mt-4">
             <div className="flex items-center space-x-2 text-sm text-gray-500">
               <span>{currentIndex + 1}</span>
@@ -189,7 +178,6 @@ const NewPortfolioCarousel = () => {
           </div>
         </div>
         
-        {/* View Portfolio Button */}
         <div className="text-center mt-12">
           <Button variant="primary" className="px-8 py-3 hover:scale-105 transition-transform">
             Xem hồ sơ
@@ -197,7 +185,6 @@ const NewPortfolioCarousel = () => {
         </div>
       </div>
 
-      {/* Custom CSS cho Swiper */}
       <style jsx>{`
         .portfolio-swiper .swiper-slide {
           display: flex;
@@ -228,4 +215,4 @@ const NewPortfolioCarousel = () => {
   );
 };
 
-export default NewPortfolioCarousel;
+export default PortfolioCarousel;

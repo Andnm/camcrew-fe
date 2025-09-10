@@ -20,7 +20,6 @@ const TestimonialsSection = () => {
                   </span>
                 </div>
                 
-                {/* Rating stars */}
                 <div className="flex justify-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
@@ -40,7 +39,6 @@ const TestimonialsSection = () => {
           ))}
         </div>
         
-        {/* Trust indicators */}
         <div className="mt-12 text-center">
           <div className="flex justify-center items-center space-x-8 text-gray-500">
             <div className="text-center">

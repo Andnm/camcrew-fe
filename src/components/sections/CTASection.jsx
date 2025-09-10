@@ -11,7 +11,6 @@ const CTASection = () => {
            }}>
       </div>
       
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/90"></div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -36,7 +35,6 @@ const CTASection = () => {
           </div>
         </div>
         
-        {/* Decorative elements */}
         <div className="absolute top-8 right-8 w-32 h-32 opacity-10">
           <div className="w-full h-full border-4 border-orange-500 rounded-full"></div>
         </div>

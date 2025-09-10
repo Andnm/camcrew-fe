@@ -35,7 +35,6 @@ const PortfolioCarousel = () => {
     }
   };
 
-  // Handle slide change
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.realIndex);
   };
@@ -68,7 +67,6 @@ const PortfolioCarousel = () => {
             <Swiper
               ref={swiperRef}
               modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-              spaceBetween={16}
               slidesPerView={3}
               centeredSlides={true}
               loop={true}
@@ -80,7 +78,7 @@ const PortfolioCarousel = () => {
               effect="coverflow"
               coverflowEffect={{
                 rotate: 0,
-                stretch: 0,
+                stretch: 25,
                 depth: 100,
                 modifier: 1,
                 slideShadows: false,
@@ -142,6 +140,7 @@ const PortfolioCarousel = () => {
                         </>
                       ) : (
                         <>
+                          {/* Side Cards Overlay */}
                           <div className="absolute inset-0 bg-black/40 transition-all duration-300"></div>                                        
                         </>
                       )}

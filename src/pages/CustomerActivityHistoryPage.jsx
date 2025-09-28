@@ -626,7 +626,7 @@ const UserProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 p-4">
+    <div className="min-h-screen bg-black p-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className="w-full lg:w-80">

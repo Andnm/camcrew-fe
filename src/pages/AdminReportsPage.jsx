@@ -274,7 +274,7 @@ const AdminReportsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Header />
       
       <div className="max-w-7xl mx-auto p-6">

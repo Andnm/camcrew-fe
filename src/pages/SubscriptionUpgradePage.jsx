@@ -1,6 +1,5 @@
 import React from 'react';
 import { Bell, Calendar, Check, CreditCard, FileText, Star, TrendingUp, User } from 'lucide-react';
-import Header from '../components/layout/Header';
 
 const SubscriptionUpgradePage = () => {
   const plans = [
@@ -40,8 +39,7 @@ const SubscriptionUpgradePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Header />
+    <div className="min-h-screen bg-black">
       
       <div className="max-w-6xl mx-auto p-4">
         <div className="flex flex-col lg:flex-row gap-8">

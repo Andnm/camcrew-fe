@@ -4,7 +4,7 @@ import { FEATURES_DATA } from '../../data/constants';
 
 const WhyChooseSection = () => {
   return (
-    <section className="bg-gray-900 text-white py-16">
+    <section className="bg-black text-white py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-4">
           TẠI SAO NÊN CHỌN<br />

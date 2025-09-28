@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip, Image, Phone, Video, MoreHorizontal, Search, MessageCircle } from 'lucide-react';
-import Header from '../components/layout/Header';
 
 const ChatMessagesPage = () => {
   const [selectedChat, setSelectedChat] = useState(1);
@@ -111,8 +110,7 @@ const ChatMessagesPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Header />
+    <div className="min-h-screen bg-black">
       
       <div className="flex h-screen pt-16">
         {/* Conversations List */}

@@ -117,7 +117,7 @@ const BookingDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Header />
       
       <div className="max-w-6xl mx-auto p-6 pt-24">

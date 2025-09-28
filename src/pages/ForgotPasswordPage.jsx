@@ -122,7 +122,7 @@ const ForgotPasswordPage = () => {
   if (step === "email") {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="bg-gray-900 rounded-lg p-8 w-full max-w-md">
+        <div className="bg-black rounded-lg p-8 w-full max-w-md">
           <div className="text-center mb-8">
             <img
               src="assets/images/logo/logo_square.png"
@@ -191,7 +191,7 @@ const ForgotPasswordPage = () => {
   if (step === "verify") {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="bg-gray-900 rounded-lg p-8 w-full max-w-md">
+        <div className="bg-black rounded-lg p-8 w-full max-w-md">
           <div className="text-center mb-8">
             <img
               src="assets/images/logo/logo_square.png"
@@ -265,7 +265,7 @@ const ForgotPasswordPage = () => {
   // step === "reset"
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="bg-gray-900 rounded-lg p-8 w-full max-w-md">
+      <div className="bg-black rounded-lg p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <img
             src="assets/images/logo/logo_square.png"

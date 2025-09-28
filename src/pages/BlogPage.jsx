@@ -33,8 +33,7 @@ const BlogPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Header />
+    <div className="min-h-screen bg-black">
       
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="text-white text-3xl font-bold text-center mb-12">Bài viết nổi bật</h1>

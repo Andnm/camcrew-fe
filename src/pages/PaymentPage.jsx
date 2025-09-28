@@ -63,7 +63,7 @@ const PaymentPage = () => {
 
   if (paymentStep === 'processing') {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
           <h2 className="text-white text-xl font-semibold mb-2">Đang xử lý thanh toán</h2>
@@ -75,7 +75,7 @@ const PaymentPage = () => {
 
   if (paymentStep === 'success') {
     return (
-      <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-black">
         <Header />
         <div className="max-w-2xl mx-auto p-6 pt-24">
           <div className="bg-gray-800 rounded-lg p-8 text-center">
@@ -125,7 +125,7 @@ const PaymentPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Header />
       
       <div className="max-w-4xl mx-auto p-6 pt-24">

@@ -53,7 +53,7 @@ const CreateServiceForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-black p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-gray-800 rounded-lg p-8">
           <h1 className="text-white text-2xl font-bold mb-8">Tạo Dịch Vụ Mới</h1>

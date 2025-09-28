@@ -4,7 +4,7 @@ import { CTA_CONTENT } from '../../data/constants';
 
 const CTASection = () => {
   return (
-    <section className="relative bg-gray-900 text-white py-16">
+    <section className="relative bg-black text-white py-16">
       <div className="absolute inset-0 bg-cover bg-center opacity-30"
            style={{
              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCI+PHBhdGggZD0ibTAgNGw0LTRtLTEgMWwxLTFtLTEgNWwxLTEiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==')"

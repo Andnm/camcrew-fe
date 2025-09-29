@@ -25,13 +25,11 @@ const PersonalInfo = lazy(() => import("./pages/account/PersonalInfo"));
 const Notifications = lazy(() => import("./pages/account/Notifications"));
 const MyRentals = lazy(() => import("./pages/account/MyRentals"));
 const Messages = lazy(() => import("./pages/account/Messages"));
-const BookingHistory = lazy(() => import("./pages/account/BookingHistory"));
+const ActivityHistory = lazy(() => import("./pages/account/ActivityHistory"));
 const SubscriptionUpgrade = lazy(() => import("./pages/account/SubscriptionUpgrade"));
 
 const NotificationsPage = lazy(() => import("./pages/NotificationsPage"));
-const CustomerActivityHistoryPage = lazy(() =>
-  import("./pages/CustomerActivityHistoryPage")
-);
+
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
 const AdminServicesPage = lazy(() => import("./pages/admin/AdminServicesPage"));
@@ -145,7 +143,7 @@ export default function App() {
               >
                 <Route index element={<PersonalInfo />} />
                 <Route path="personal" element={<PersonalInfo />} />
-                <Route path="bookings" element={<BookingHistory />} />
+                <Route path="activities" element={<ActivityHistory />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="notifications" element={<Notifications />} />
                 <Route path="my-rentals" element={<MyRentals />} />
@@ -160,14 +158,7 @@ export default function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route
-                path="/activity-history"
-                element={
-                  <ProtectedRoute>
-                    <CustomerActivityHistoryPage />
-                  </ProtectedRoute>
-                }
-              />
+             
 
               <Route
                 path="/booking-management"

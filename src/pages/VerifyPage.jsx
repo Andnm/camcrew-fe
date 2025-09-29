@@ -98,7 +98,7 @@ const VerifyPage = () => {
           <div className="space-y-3">
             <Link
               to="/login"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+              className="inline-block bg-[#FF9500] hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
             >
               Về trang đăng nhập
             </Link>

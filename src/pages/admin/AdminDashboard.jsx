@@ -49,7 +49,7 @@ const AdminDashboard = () => {
       change: "+15%",
       color: "text-[#FF9500]",
       icon: DollarSign,
-      bgColor: "bg-orange-500/10",
+      bgColor: "bg-[#FF9500]/10",
     },
   ];
 
@@ -303,7 +303,7 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-[#FF9500] rounded-full"></div>
               <p className="text-gray-700 text-sm">
                 Booking mới từ Nguyễn Văn B
               </p>

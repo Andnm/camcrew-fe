@@ -59,7 +59,7 @@ export default function Notifications() {
                 <p className="text-gray-300">{n.message}</p>
               </div>
               {!n.read && (
-                <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0 mt-2" />
+                <div className="w-2 h-2 bg-[#FF9500] rounded-full flex-shrink-0 mt-2" />
               )}
             </div>
           </div>

@@ -18,19 +18,19 @@ const FeaturesSection = () => {
               <p>Với 3 bước cơ bản:</p>
               <div className="space-y-3">
                 <p className="flex items-center">
-                  <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
+                  <span className="w-8 h-8 bg-[#FF9500] text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
                     1
                   </span>
                   Đăng yêu cầu quay phim
                 </p>
                 <p className="flex items-center">
-                  <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
+                  <span className="w-8 h-8 bg-[#FF9500] text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
                     2
                   </span>
                   Nhận báo giá từ thợ quay phù hợp
                 </p>
                 <p className="flex items-center">
-                  <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
+                  <span className="w-8 h-8 bg-[#FF9500] text-white rounded-full flex items-center justify-center text-lg font-semibold mr-4">
                     3
                   </span>
                   Chọn người phù hợp, ký hợp đồng và thanh toán an toàn

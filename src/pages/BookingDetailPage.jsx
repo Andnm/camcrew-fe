@@ -111,7 +111,7 @@ const BookingDetailPage = () => {
     const statusMap = {
       completed: 'bg-green-500',
       upcoming: 'bg-gray-400',
-      current: 'bg-orange-500'
+      current: 'bg-[#FF9500]'
     };
     return statusMap[status] || 'bg-gray-400';
   };
@@ -269,7 +269,7 @@ const BookingDetailPage = () => {
                         rows={3}
                         className="w-full bg-gray-700 text-white rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                       />
-                      <button className="mt-3 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                      <button className="mt-3 bg-[#FF9500] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                         Thêm ghi chú
                       </button>
                     </div>
@@ -353,7 +353,7 @@ const BookingDetailPage = () => {
               <h3 className="text-white text-lg font-semibold mb-4">Hành động nhanh</h3>
               
               <div className="space-y-3">
-                <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2">
+                <button className="w-full bg-[#FF9500] hover:bg-orange-600 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2">
                   <Download className="w-4 h-4" />
                   <span>Tải hợp đồng</span>
                 </button>

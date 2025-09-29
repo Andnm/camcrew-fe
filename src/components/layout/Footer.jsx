@@ -19,7 +19,7 @@ const Footer = () => {
               <a
                 key={index}
                 href={social.url}
-                className="w-8 h-8 bg-orange-500 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors"
+                className="w-8 h-8 bg-[#FF9500] hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors"
                 aria-label={social.name}
               >
                 {social.icon && <social.icon className="w-4 h-4" />}

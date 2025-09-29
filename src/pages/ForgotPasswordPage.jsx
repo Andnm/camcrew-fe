@@ -179,8 +179,8 @@ const ForgotPasswordPage = () => {
               disabled={!isValidEmail || loading}
               className={`w-full font-semibold py-3 rounded-lg transition-colors ${
                 !isValidEmail || loading
-                  ? "bg-orange-500/60 text-white cursor-not-allowed"
-                  : "bg-orange-500 hover:bg-orange-600 text-white"
+                  ? "bg-[#FF9500]/60 text-white cursor-not-allowed"
+                  : "bg-[#FF9500] hover:bg-orange-600 text-white"
               }`}
             >
               {loading ? "Đang gửi..." : "Gửi mã xác thực"}
@@ -258,8 +258,8 @@ const ForgotPasswordPage = () => {
               disabled={!code.trim() || loading}
               className={`w-full font-semibold py-3 rounded-lg transition-colors mb-4 ${
                 !code.trim() || loading
-                  ? "bg-orange-500/60 text-white cursor-not-allowed"
-                  : "bg-orange-500 hover:bg-orange-600 text-white"
+                  ? "bg-[#FF9500]/60 text-white cursor-not-allowed"
+                  : "bg-[#FF9500] hover:bg-orange-600 text-white"
               }`}
             >
               {loading ? "Đang kiểm tra..." : "Xác minh & Đổi mật khẩu"}
@@ -348,8 +348,8 @@ const ForgotPasswordPage = () => {
               newPassword.length < 6 ||
               confirmPassword.length < 6 ||
               newPassword !== confirmPassword
-                ? "bg-orange-500/60 text-white cursor-not-allowed"
-                : "bg-orange-500 hover:bg-orange-600 text-white"
+                ? "bg-[#FF9500]/60 text-white cursor-not-allowed"
+                : "bg-[#FF9500] hover:bg-orange-600 text-white"
             }`}
           >
             {loading ? "Đang đặt lại..." : "Xác nhận"}

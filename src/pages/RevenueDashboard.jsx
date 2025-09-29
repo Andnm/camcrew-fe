@@ -120,7 +120,7 @@ const RevenueDashboard = () => {
                 <option value="lastMonth">Tháng trước</option>
                 <option value="thisYear">Năm này</option>
               </select>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+              <button className="bg-[#FF9500] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 transition-colors">
                 <Download className="w-4 h-4" />
                 <span>Xuất báo cáo</span>
               </button>
@@ -203,7 +203,7 @@ const RevenueDashboard = () => {
                 <h3 className="text-white text-lg font-semibold">Biểu đồ doanh thu theo tháng</h3>
                 <div className="flex items-center space-x-4 text-sm">
                   <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-[#FF9500] rounded-full"></div>
                     <span className="text-gray-400">Doanh thu</span>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ const RevenueDashboard = () => {
                 {monthlyChart.map((data, index) => (
                   <div key={index} className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-full bg-orange-500 rounded-t hover:bg-orange-400 transition-colors cursor-pointer"
+                      className="w-full bg-[#FF9500] rounded-t hover:bg-orange-400 transition-colors cursor-pointer"
                       style={{ 
                         height: `${(data.amount / Math.max(...monthlyChart.map(d => d.amount))) * 200}px` 
                       }}

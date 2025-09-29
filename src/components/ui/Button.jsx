@@ -11,8 +11,8 @@ const Button = ({
   const baseClasses = 'font-semibold transition-colors rounded-lg inline-flex items-center justify-center';
   
   const variants = {
-    primary: 'bg-orange-500 hover:bg-orange-600 text-white',
-    secondary: 'border border-orange-500 text-[#FF9500] hover:bg-orange-500 hover:text-white',
+    primary: 'bg-[#FF9500] hover:bg-orange-600 text-white',
+    secondary: 'border border-orange-500 text-[#FF9500] hover:bg-[#FF9500] hover:text-white',
     ghost: 'text-[#FF9500] hover:text-orange-600'
   };
   

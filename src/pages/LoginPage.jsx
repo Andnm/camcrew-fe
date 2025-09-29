@@ -156,7 +156,7 @@ const LoginPage = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
+                className="w-full bg-[#FF9500] hover:bg-orange-600 disabled:opacity-60 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
               >
                 {submitting ? "Đang đăng nhập..." : "Đăng nhập"}
               </button>

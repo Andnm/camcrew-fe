@@ -127,7 +127,7 @@ const PortfolioCarousel = () => {
                           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <div className="space-y-3">
                               <div className="inline-block">
-                                <span className="bg-orange-500 px-3 py-1 rounded-full text-sm font-semibold">
+                                <span className="bg-[#FF9500] px-3 py-1 rounded-full text-sm font-semibold">
                                   {slide.category} - Phong cách
                                 </span>
                               </div>
@@ -158,7 +158,7 @@ const PortfolioCarousel = () => {
                 className={`
                   w-3 h-3 rounded-full transition-all duration-300 transform
                   ${index === currentIndex 
-                    ? 'bg-orange-500 scale-125' 
+                    ? 'bg-[#FF9500] scale-125' 
                     : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
                   }
                 `}

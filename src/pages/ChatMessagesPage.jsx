@@ -164,7 +164,7 @@ const ChatMessagesPage = () => {
                         {conversation.lastMessage}
                       </p>
                       {conversation.unread > 0 && (
-                        <span className="bg-orange-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] h-5 flex items-center justify-center">
+                        <span className="bg-[#FF9500] text-white text-xs rounded-full px-2 py-1 min-w-[20px] h-5 flex items-center justify-center">
                           {conversation.unread}
                         </span>
                       )}
@@ -235,7 +235,7 @@ const ChatMessagesPage = () => {
                     <div
                       className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                         msg.senderId === 'me'
-                          ? 'bg-orange-500 text-white'
+                          ? 'bg-[#FF9500] text-white'
                           : 'bg-gray-700 text-gray-100'
                       }`}
                     >

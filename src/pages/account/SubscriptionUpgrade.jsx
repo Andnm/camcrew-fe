@@ -18,7 +18,7 @@ const SubscriptionUpgradePage = () => {
         'Gắn nhãn "Freelancer đã được xác minh"'
       ],
       buttonText: 'Đăng ký ngay',
-      buttonClass: 'bg-orange-500 hover:bg-orange-600 text-white',
+      buttonClass: 'bg-[#FF9500] hover:bg-orange-600 text-white',
       cardClass: 'bg-gray-800 border-gray-700'
     },
     {
@@ -36,7 +36,7 @@ const SubscriptionUpgradePage = () => {
       ],
       buttonText: 'Đăng ký ngay',
       buttonClass: 'bg-gray-800 hover:bg-gray-700 text-white',
-      cardClass: 'bg-orange-500 border-orange-400',
+      cardClass: 'bg-[#FF9500] border-orange-400',
       popular: true
     }
   ];
@@ -62,7 +62,7 @@ const SubscriptionUpgradePage = () => {
           <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Nâng cấp tài khoản
           </h1>
-          <h2 className="text-orange-500 text-2xl md:text-3xl font-bold">
+          <h2 className="text-[#FF9500] text-2xl md:text-3xl font-bold">
             Mở khóa nhiều quyền lợi hơn
           </h2>
         </div>
@@ -86,12 +86,12 @@ const SubscriptionUpgradePage = () => {
 
               {/* Plan Header */}
               <div className="mb-6">
-                <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-black' : 'text-orange-500'}`}>
+                <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
                   {plan.name}
                 </h3>
                 
                 <div className="flex items-baseline mb-4">
-                  <span className={`text-4xl md:text-5xl font-bold ${plan.popular ? 'text-black' : 'text-orange-500'}`}>
+                  <span className={`text-4xl md:text-5xl font-bold ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
                     {formatPrice(plan.price)}đ
                   </span>
                   <span className={`text-lg ml-1 ${plan.popular ? 'text-gray-800' : 'text-gray-400'}`}>
@@ -110,7 +110,7 @@ const SubscriptionUpgradePage = () => {
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
-                        plan.popular ? 'bg-black' : 'bg-orange-500'
+                        plan.popular ? 'bg-black' : 'bg-[#FF9500]'
                       }`}>
                         <Check className={`w-3 h-3 ${plan.popular ? 'text-white' : 'text-white'}`} />
                       </div>
@@ -144,7 +144,7 @@ const SubscriptionUpgradePage = () => {
             
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold mb-2">Boost Hồ Sơ</h4>
@@ -154,7 +154,7 @@ const SubscriptionUpgradePage = () => {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold mb-2">Ưu Tiên Duyệt</h4>
@@ -164,7 +164,7 @@ const SubscriptionUpgradePage = () => {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Check className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold mb-2">Xác Minh Uy Tín</h4>

@@ -44,7 +44,7 @@ export default function PersonalInfo() {
         {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
-            className="flex items-center space-x-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg"
+            className="flex items-center space-x-2 bg-[#FF9500] hover:bg-orange-600 text-white px-4 py-2 rounded-lg"
           >
             <Edit2 className="w-4 h-4" />
             <span>Chỉnh sửa</span>

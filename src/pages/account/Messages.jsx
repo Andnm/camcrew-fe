@@ -41,7 +41,7 @@ export default function Messages() {
               <div className="flex items-center space-x-2">
                 <span className="text-gray-400 text-sm">{m.time}</span>
                 {m.unread && (
-                  <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                  <div className="w-2 h-2 bg-[#FF9500] rounded-full" />
                 )}
               </div>
             </div>

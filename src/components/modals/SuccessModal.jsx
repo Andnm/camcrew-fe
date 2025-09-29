@@ -25,7 +25,7 @@ const SuccessModal = ({ isOpen, onClose, title = "Báo cáo thành công", messa
 
         <button
           onClick={onClose}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors"
+          className="w-full bg-[#FF9500] hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors"
         >
           Hoàn thành
         </button>

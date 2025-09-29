@@ -4,7 +4,7 @@ import logo from "../assets/images/logo/logo_square.png";
 import horizontal_logo from "../assets/images/logo/horizontal_logo_with_text.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { ROLE_OPTIONS } from "../utils/constants";
+import { ROLE_OPTIONS_LABEL } from "../utils/constants";
 import { registerUser } from "../api/auth";
 import { loginGoogle } from "../api/auth";
 import { signInWithPopup } from "firebase/auth";
@@ -200,7 +200,7 @@ const RegisterPage = () => {
                     onChange={handleChange}
                     className="w-full bg-[#D9D9D9] text-black rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
-                    {ROLE_OPTIONS.map((r) => (
+                    {ROLE_OPTIONS_LABEL.map((r) => (
                       <option key={r.value} value={r.value}>
                         {r.label}
                       </option>
@@ -255,7 +255,7 @@ const RegisterPage = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
+                  className="w-full bg-[#FF9500] hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
                 >
                   {submitting ? "Đang đăng ký..." : "Đăng ký"}
                 </button>

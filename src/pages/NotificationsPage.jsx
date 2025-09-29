@@ -61,7 +61,7 @@ const NotificationsPage = () => {
                 <h2 className="text-white text-lg font-bold">Nguyễn Văn B</h2>
                 <p className="text-gray-400 text-sm">Khách</p>
                 <div className="mt-2">
-                  <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs">
+                  <span className="bg-[#FF9500] text-white px-3 py-1 rounded-full text-xs">
                     Đã xác minh
                   </span>
                 </div>
@@ -80,7 +80,7 @@ const NotificationsPage = () => {
                   <FileText className="w-5 h-5" />
                   <span>Tin nhắn</span>
                 </button>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left bg-orange-500 text-white">
+                <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left bg-[#FF9500] text-white">
                   <Bell className="w-5 h-5" />
                   <span>Thông báo</span>
                 </button>

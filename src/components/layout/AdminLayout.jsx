@@ -132,7 +132,7 @@ const AdminLayout = () => {
         {sidebarOpen && (
           <div className="p-4 border-b border-gray-700">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#FF9500] rounded-full flex items-center justify-center">
                 <Shield className="w-6 h-6" />
               </div>
               <div>
@@ -151,7 +151,7 @@ const AdminLayout = () => {
                   onClick={() => navigate(item.path)}
                   className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors group ${
                     item.active
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#FF9500] text-white"
                       : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   }`}
                 >
@@ -186,7 +186,7 @@ const AdminLayout = () => {
                   onClick={() => navigate(item.path)}
                   className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors group ${
                     item.active
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#FF9500] text-white"
                       : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   }`}
                 >

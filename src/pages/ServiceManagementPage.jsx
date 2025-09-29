@@ -211,7 +211,7 @@ const ServiceManagementPage = () => {
                   toast.dismiss(t.id);
                   resolve(true);
                 }}
-                className="px-3 py-1 rounded bg-orange-500 hover:bg-orange-600"
+                className="px-3 py-1 rounded bg-[#FF9500] hover:bg-orange-600"
               >
                 Xác nhận
               </button>
@@ -309,7 +309,7 @@ const ServiceManagementPage = () => {
             </div>
             <button
               onClick={() => handleServiceAction(null, "create")}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors"
+              className="bg-[#FF9500] hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors"
             >
               <Plus className="w-5 h-5" />
               <span>Tạo dịch vụ mới</span>
@@ -425,7 +425,7 @@ const ServiceManagementPage = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-md transition-colors ${
                     activeTab === tab.id
-                      ? "bg-orange-500 text-white"
+                      ? "bg-[#FF9500] text-white"
                       : "text-gray-300 hover:text-white"
                   }`}
                 >
@@ -435,7 +435,7 @@ const ServiceManagementPage = () => {
                       className={`${
                         activeTab === tab.id
                           ? "bg-white text-[#FF9500]"
-                          : "bg-orange-500 text-white"
+                          : "bg-[#FF9500] text-white"
                       } text-xs rounded-full px-2 py-1`}
                     >
                       {tab.count}
@@ -473,7 +473,7 @@ const ServiceManagementPage = () => {
                         {service.categories.map((category, index) => (
                           <span
                             key={index}
-                            className="bg-orange-500 text-white px-2 py-1 rounded text-xs"
+                            className="bg-[#FF9500] text-white px-2 py-1 rounded text-xs"
                           >
                             {category}
                           </span>
@@ -686,7 +686,7 @@ const ServiceManagementPage = () => {
                   </p>
                   <button
                     onClick={() => handleServiceAction(null, "create")}
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                    className="bg-[#FF9500] hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                   >
                     Tạo dịch vụ đầu tiên
                   </button>

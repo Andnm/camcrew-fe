@@ -12,7 +12,6 @@ export default function AccountSidebar() {
   const { user, logout } = useAuth();
   const avatar = user?.avatar_url;
 
-  // xác định items theo role
   const sidebarItems =
     user?.role_name === "cameraman"
       ? [...customerSidebarItems, ...cameramanExtraItems]
@@ -35,7 +34,7 @@ export default function AccountSidebar() {
                 <UserIcon className="w-12 h-12 text-gray-300" />
               )}
             </div>
-            <button className="absolute bottom-0 right-0 bg-orange-500 rounded-full p-2 hover:bg-orange-600 transition-colors border-2 border-white">
+            <button className="absolute bottom-0 right-0 bg-[#FF9500] rounded-full p-2 hover:bg-orange-600 transition-colors border-2 border-white">
               <Camera className="w-4 h-4 text-white" />
             </button>
           </div>
@@ -47,7 +46,7 @@ export default function AccountSidebar() {
             {user?.role_name === "cameraman" ? "Thợ quay phim" : "Khách"}
           </p>
           <div className="mt-2">
-            <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm">
+            <span className="bg-[#FF9500] text-white px-3 py-1 rounded-full text-sm">
               {getMembershipLabel(user?.membership_subscription)}
             </span>
           </div>
@@ -62,7 +61,7 @@ export default function AccountSidebar() {
               className={({ isActive }) =>
                 `w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? "bg-orange-500 text-white"
+                    ? "bg-[#FF9500] text-white"
                     : "text-gray-300 hover:bg-gray-700"
                 }`
               }

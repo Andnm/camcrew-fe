@@ -111,7 +111,7 @@ const PaymentPage = () => {
             </div>
 
             <div className="space-y-3">
-              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors">
+              <button className="w-full bg-[#FF9500] hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors">
                 Xem chi tiết booking
               </button>
               <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold transition-colors">
@@ -148,7 +148,7 @@ const PaymentPage = () => {
                     onClick={() => setSelectedMethod(method.id)}
                     className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                       selectedMethod === method.id
-                        ? 'border-orange-500 bg-orange-500 bg-opacity-10'
+                        ? 'border-orange-500 bg-[#FF9500] bg-opacity-10'
                         : 'border-gray-600 hover:border-gray-500'
                     }`}
                   >
@@ -301,7 +301,7 @@ const PaymentPage = () => {
 
               <button
                 onClick={handlePayment}
-                className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
+                className="w-full mt-6 bg-[#FF9500] hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
               >
                 Thanh toán {new Intl.NumberFormat('vi-VN').format(booking.deposit)} VND
               </button>

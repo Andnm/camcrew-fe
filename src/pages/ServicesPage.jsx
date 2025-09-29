@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Search, Filter, MapPin, Clock, DollarSign } from 'lucide-react';
 import Header from '../components/layout/Header';
 import ServiceCard from '../components/services/ServiceCard';
+import ServiceCardSkeleton from '../components/services/ServiceCardSkeleton';
 import Pagination from '../components/common/Pagination';
 import { listServices } from '../api/services';
-import { SERVICE_STYLES, SERVICE_CATEGORIES, SERVICE_AREAS } from '../utils/constants';
+import { SERVICE_STYLES, SERVICE_CATEGORIES, SERVICE_AREAS, SERVICE_STATUS_OPTIONS } from '../utils/constants';
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
@@ -19,7 +20,7 @@ const ServicesPage = () => {
     styles: [],
     categories: [],
     areas: [],
-    min: 1000000,
+    min: 0,
     max: 5000000,
     search: ''
   });
@@ -39,7 +40,8 @@ const ServicesPage = () => {
         max: filters.max,
         search: filters.search,
         page: page,
-        limit: pagination.pageSize
+        limit: pagination.pageSize,
+        status: SERVICE_STATUS_OPTIONS.APPROVED
       });
 
       setServices(response.data || []);
@@ -50,7 +52,6 @@ const ServicesPage = () => {
         totalResults: 0
       });
     } catch (error) {
-      console.error('Error fetching services:', error);
       setServices([]);
       setPagination({
         pageIndex: page,
@@ -122,7 +123,6 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-black">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Filters - Same as before */}
           <aside className="w-full lg:w-80">
             <div className="bg-gray-800 rounded-lg p-6">
               <h2 className="text-white text-xl font-bold mb-6 flex items-center">
@@ -131,7 +131,6 @@ const ServicesPage = () => {
               </h2>
 
               <div className="space-y-6">
-                {/* Search */}
                 <div>
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -145,7 +144,6 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Service Styles */}
                 <div>
                   <h3 className="text-[#FF9500] font-semibold mb-3">Theo dịch vụ</h3>
                   <div className="space-y-2">
@@ -163,7 +161,6 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Service Categories */}
                 <div>
                   <h3 className="text-[#FF9500] font-semibold mb-3">Theo phong cách</h3>
                   <div className="space-y-2">
@@ -181,7 +178,6 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Location */}
                 <div>
                   <h3 className="text-[#FF9500] font-semibold mb-3">Theo địa điểm</h3>
                   <select 
@@ -216,7 +212,6 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Price Range */}
                 <div>
                   <h3 className="text-[#FF9500] font-semibold mb-3 flex items-center">
                     <DollarSign className="w-4 h-4 mr-2" />
@@ -252,7 +247,7 @@ const ServicesPage = () => {
                         left: `${Math.max(0, (filters.min / 10000000) * 100)}%`,
                         width: `${Math.min(100, ((filters.max - filters.min) / 10000000) * 100)}%`
                       }}
-                    ></div>
+                    />
                   </div>
                   <div className="flex justify-between text-xs text-gray-400 mt-1">
                     <span>0đ</span>
@@ -260,7 +255,6 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Clear Filters Button */}
                 <button
                   onClick={resetFilters}
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg text-sm transition-colors"
@@ -271,90 +265,37 @@ const ServicesPage = () => {
             </div>
           </aside>
 
-          {/* Main Content */}
           <main className="flex-1">
             <div className="mb-6">
               <h1 className="text-white text-2xl font-bold mb-2">DANH SÁCH THỢ</h1>
               <div className="flex items-center justify-between">
                 <p className="text-gray-400">
-                  {loading ? 'Đang tải...' : `Tìm thấy ${pagination.totalResults} dịch vụ phù hợp`}
+                  {loading ? (
+                    <span className="inline-block h-4 w-40 bg-gray-700 rounded animate-pulse" />
+                  ) : (
+                    `Tìm thấy ${pagination.totalResults} dịch vụ phù hợp`
+                  )}
                 </p>
                 {pagination.totalResults > 0 && (
                   <div className="text-sm text-gray-400">
-                    Trang {pagination.pageIndex} / {pagination.totalPages}
+                    {loading ? (
+                      <span className="inline-block h-4 w-24 bg-gray-700 rounded animate-pulse" />
+                    ) : (
+                      <>Trang {pagination.pageIndex} / {pagination.totalPages}</>
+                    )}
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Active Filters - Same as before */}
-            {(filters.styles.length > 0 || filters.categories.length > 0 || filters.areas.length > 0) && (
-              <div className="mb-6 flex flex-wrap gap-2">
-                <span className="text-gray-400 text-sm">Bộ lọc đang áp dụng:</span>
-                {filters.styles.map(style => {
-                  const styleObj = SERVICE_STYLES.find(s => s.value === style);
-                  return (
-                    <span
-                      key={style}
-                      className="inline-flex items-center px-3 py-1 bg-orange-500 text-white text-xs rounded-full"
-                    >
-                      {styleObj?.label}
-                      <button
-                        onClick={() => handleStyleChange(style)}
-                        className="ml-2 text-white hover:text-gray-200"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  );
-                })}
-                {filters.categories.map(category => {
-                  const categoryObj = SERVICE_CATEGORIES.find(c => c.value === category);
-                  return (
-                    <span
-                      key={category}
-                      className="inline-flex items-center px-3 py-1 bg-blue-500 text-white text-xs rounded-full"
-                    >
-                      {categoryObj?.label}
-                      <button
-                        onClick={() => handleCategoryChange(category)}
-                        className="ml-2 text-white hover:text-gray-200"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  );
-                })}
-                {filters.areas.map(areas => {
-                  const areasObj = SERVICE_AREAS.find(l => l.value === areas);
-                  return (
-                    <span
-                      key={areas}
-                      className="inline-flex items-center px-3 py-1 bg-green-500 text-white text-xs rounded-full"
-                    >
-                      {areasObj?.label}
-                      <button
-                        onClick={() => handleLocationChange(areas)}
-                        className="ml-2 text-white hover:text-gray-200"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Services List */}
             <div className="space-y-4">
               {loading ? (
-                <div className="text-center py-12">
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-                  <p className="text-gray-400 mt-2">Đang tải danh sách dịch vụ...</p>
-                </div>
+                Array.from({ length: pagination.pageSize || 10 }).map((_, i) => (
+                  <ServiceCardSkeleton key={i} />
+                ))
               ) : services.length > 0 ? (
                 services.map(service => (
-                  <ServiceCard key={service.id} service={service} />
+                  <ServiceCard key={service.id || service._id} service={service} />
                 ))
               ) : (
                 <div className="text-center py-12">
@@ -367,7 +308,6 @@ const ServicesPage = () => {
               )}
             </div>
 
-            {/* Pagination */}
             <Pagination
               currentPage={pagination.pageIndex}
               totalPages={pagination.totalPages}

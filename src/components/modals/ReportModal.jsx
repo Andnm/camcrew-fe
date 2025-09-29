@@ -62,7 +62,7 @@ const ReportModal = ({ isOpen, onClose, cameraman }) => {
 
           <button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors"
+            className="w-full bg-[#FF9500] hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors"
           >
             Gửi báo cáo
           </button>

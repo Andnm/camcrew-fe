@@ -164,7 +164,7 @@ const AdminAnalyticsPage = () => {
                   <div key={index} className="flex-1 flex flex-col items-center group">
                     <div className="relative w-full">
                       <div 
-                        className="w-full bg-orange-500 rounded-t hover:bg-orange-400 transition-colors cursor-pointer"
+                        className="w-full bg-[#FF9500] rounded-t hover:bg-orange-400 transition-colors cursor-pointer"
                         style={{ 
                           height: `${(data.revenue / Math.max(...analytics.revenueData.map(d => d.revenue))) * 240}px` 
                         }}
@@ -187,7 +187,7 @@ const AdminAnalyticsPage = () => {
               
               <div className="flex items-center justify-center space-x-6 mt-4 text-sm">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-[#FF9500] rounded-full"></div>
                   <span className="text-gray-400">Doanh thu</span>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -217,7 +217,7 @@ const AdminAnalyticsPage = () => {
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div 
-                      className="bg-orange-500 h-2 rounded-full"
+                      className="bg-[#FF9500] h-2 rounded-full"
                       style={{ width: `${category.percentage}%` }}
                     ></div>
                   </div>
@@ -241,7 +241,7 @@ const AdminAnalyticsPage = () => {
             <div className="space-y-4">
               {analytics.topCameramen.map((cameraman, index) => (
                 <div key={index} className="flex items-center space-x-4 p-4 bg-gray-700 rounded-lg">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-8 h-8 bg-[#FF9500] rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {index + 1}
                   </div>
                   <div className="flex-1">

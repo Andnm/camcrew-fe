@@ -98,7 +98,7 @@ const BookingManagementPage = () => {
                 <h2 className="text-white text-lg font-bold">Nguyễn Văn A</h2>
                 <p className="text-gray-400 text-sm">Cinematic Videographer</p>
                 <div className="mt-2">
-                  <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs">
+                  <span className="bg-[#FF9500] text-white px-3 py-1 rounded-full text-xs">
                     Đã xác minh
                   </span>
                 </div>
@@ -109,7 +109,7 @@ const BookingManagementPage = () => {
                   <User className="w-5 h-5" />
                   <span>Thông tin cá nhân</span>
                 </button>
-                <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left bg-orange-500 text-white">
+                <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left bg-[#FF9500] text-white">
                   <Calendar className="w-5 h-5" />
                   <span>Quản lý booking</span>
                 </button>
@@ -146,13 +146,13 @@ const BookingManagementPage = () => {
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex-1 flex items-center justify-center space-x-2 py-2 px-4 rounded-md transition-colors ${
                         activeTab === tab.id 
-                          ? 'bg-orange-500 text-white' 
+                          ? 'bg-[#FF9500] text-white' 
                           : 'text-gray-300 hover:text-white'
                       }`}
                     >
                       <span className="text-sm font-medium">{tab.label}</span>
                       {tab.count > 0 && (
-                        <span className={`${activeTab === tab.id ? 'bg-white text-[#FF9500]' : 'bg-orange-500 text-white'} text-xs rounded-full px-2 py-1`}>
+                        <span className={`${activeTab === tab.id ? 'bg-white text-[#FF9500]' : 'bg-[#FF9500] text-white'} text-xs rounded-full px-2 py-1`}>
                           {tab.count}
                         </span>
                       )}

@@ -5,6 +5,8 @@ import { ROLE_OPTIONS, SERVICE_CATEGORIES, SERVICE_AREAS, SERVICE_STYLES, SERVIC
 import { listServices } from "../../api/services";
 import { listReviews } from "../../api/reviews";
 import CreateServiceModal from "../../components/modals/CreateServiceModal";
+import toast from "react-hot-toast";
+import { getCategoryLabel, getStyleLabel } from "../../utils/helper";
 
 const CAMERAMAN_TABS = {
   SERVICES: "services",
@@ -50,6 +52,7 @@ export default function ActivityHistory() {
         page: pagination.page,
         limit: pagination.limit,
       });
+      console.log("response: ", response.data)
       setServices(response.data || []);
       setPagination((prev) => ({
         ...prev,
@@ -95,6 +98,7 @@ export default function ActivityHistory() {
   };
 
   const handleCreateSuccess = () => {
+    toast.success("Đăng dịch vụ thành công!")
     setIsModalOpen(false);
     fetchServices();
   };
@@ -105,8 +109,8 @@ export default function ActivityHistory() {
         <button
           onClick={() => setActiveTab(CAMERAMAN_TABS.SERVICES)}
           className={`px-6 py-3 font-semibold transition-colors ${activeTab === CAMERAMAN_TABS.SERVICES
-              ? "text-[#FF9500] border-b-2 border-[#FF9500]"
-              : "text-gray-400 hover:text-gray-300"
+            ? "text-[#FF9500] border-b-2 border-[#FF9500]"
+            : "text-gray-400 hover:text-gray-300"
             }`}
         >
           Danh sách các dịch vụ đã đăng
@@ -114,8 +118,8 @@ export default function ActivityHistory() {
         <button
           onClick={() => setActiveTab(CAMERAMAN_TABS.REVIEWS)}
           className={`px-6 py-3 font-semibold transition-colors ${activeTab === CAMERAMAN_TABS.REVIEWS
-              ? "text-[#FF9500] border-b-2 border-[#FF9500]"
-              : "text-gray-400 hover:text-gray-300"
+            ? "text-[#FF9500] border-b-2 border-[#FF9500]"
+            : "text-gray-400 hover:text-gray-300"
             }`}
         >
           Đánh giá đã nhận
@@ -130,8 +134,8 @@ export default function ActivityHistory() {
       <button
         onClick={() => setActiveTab(CUSTOMER_TABS.BOOKINGS)}
         className={`px-6 py-3 font-semibold transition-colors ${activeTab === CUSTOMER_TABS.BOOKINGS
-            ? "text-[#FF9500] border-b-2 border-[#FF9500]"
-            : "text-gray-400 hover:text-gray-300"
+          ? "text-[#FF9500] border-b-2 border-[#FF9500]"
+          : "text-gray-400 hover:text-gray-300"
           }`}
       >
         Danh sách các dịch vụ đã thuê
@@ -139,8 +143,8 @@ export default function ActivityHistory() {
       <button
         onClick={() => setActiveTab(CUSTOMER_TABS.REVIEWS)}
         className={`px-6 py-3 font-semibold transition-colors ${activeTab === CUSTOMER_TABS.REVIEWS
-            ? "text-[#FF9500] border-b-2 border-[#FF9500]"
-            : "text-gray-400 hover:text-gray-300"
+          ? "text-[#FF9500] border-b-2 border-[#FF9500]"
+          : "text-gray-400 hover:text-gray-300"
           }`}
       >
         Đánh giá đã viết
@@ -148,8 +152,8 @@ export default function ActivityHistory() {
       <button
         onClick={() => setActiveTab(CUSTOMER_TABS.STATUS)}
         className={`px-6 py-3 font-semibold transition-colors ${activeTab === CUSTOMER_TABS.STATUS
-            ? "text-[#FF9500] border-b-2 border-[#FF9500]"
-            : "text-gray-400 hover:text-gray-300"
+          ? "text-[#FF9500] border-b-2 border-[#FF9500]"
+          : "text-gray-400 hover:text-gray-300"
           }`}
       >
         Trạng thái các dịch vụ
@@ -175,8 +179,8 @@ export default function ActivityHistory() {
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-3">
                   <div className="w-16 h-16 bg-gray-700 rounded-lg overflow-hidden flex-shrink-0">
-                    {service.video_demo_urls?.[0] ? (
-                      <img
+                    {service?.video_demo_urls?.[0] ? (
+                      <video
                         src={service.video_demo_urls[0]}
                         alt={service.title}
                         className="w-full h-full object-cover"
@@ -192,11 +196,18 @@ export default function ActivityHistory() {
                       {service.title}
                     </h3>
                     <p className="text-[#FF9500] text-sm">
-                      Phong cách: {service.categories?.join(" / ") || "N/A"}
+                      Phong cách:{" "}
+                      {service.categories && service.categories.length > 0
+                        ? service.categories.map((c) => getCategoryLabel(c)).join(" / ")
+                        : "N/A"}
                     </p>
                     <p className="text-[#FF9500] text-sm">
-                      Dịch vụ: {service.styles?.join(" / ") || "N/A"}
+                      Dịch vụ:{" "}
+                      {service.styles && service.styles.length > 0
+                        ? service.styles.map((s) => getStyleLabel(s)).join(" / ")
+                        : "N/A"}
                     </p>
+
                   </div>
                 </div>
 
@@ -219,10 +230,10 @@ export default function ActivityHistory() {
               <div className="text-right ml-4">
                 <span
                   className={`px-4 py-1.5 rounded-full text-sm font-medium ${service.status === "active"
-                      ? "bg-green-600 text-white"
-                      : service.status === "pending"
-                        ? "bg-yellow-600 text-white"
-                        : "bg-red-600 text-white"
+                    ? "bg-green-600 text-white"
+                    : service.status === "pending"
+                      ? "bg-yellow-600 text-white"
+                      : "bg-red-600 text-white"
                     }`}
                 >
                   {service.status === "active"
@@ -315,8 +326,8 @@ export default function ActivityHistory() {
                     <Star
                       key={i}
                       className={`w-4 h-4 ${i < review.rating
-                          ? "text-yellow-400 fill-current"
-                          : "text-gray-400"
+                        ? "text-yellow-400 fill-current"
+                        : "text-gray-400"
                         }`}
                     />
                   ))}

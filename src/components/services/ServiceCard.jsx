@@ -2,6 +2,7 @@ import React from 'react';
 import { MapPin, Clock, Star, User, Camera } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { SERVICE_CATEGORIES, SERVICE_TIME_OF_DAYS, SERVICE_STYLES } from '../../utils/constants'
+import { getCategoryLabel, getStyleLabel } from '../../utils/helper';
 
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
@@ -17,16 +18,6 @@ const ServiceCard = ({ service }) => {
 
   const handleClick = () => {
     navigate(`/services/${service._id}`);
-  };
-
-  const getStyleLabel = (styleValue) => {
-    const style = SERVICE_STYLES.find(st => st.value === styleValue);
-    return style ? style.label : styleValue;
-  };
-
-  const getCategoryLabel = (categoryValue) => {
-    const category = SERVICE_CATEGORIES.find(cat => cat.value === categoryValue);
-    return category ? category.label : categoryValue;
   };
 
   const getTimeLabel = (timeValue) => {

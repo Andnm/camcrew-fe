@@ -23,14 +23,14 @@ export const FEATURES_DATA = [
     description: "Tất cả thợ quay đều được kiểm duyệt kỹ lưỡng",
   },
   {
-    icon: Users,
-    title: "Đảm bảo 2 chiều & ảnh hưu trương thực tế",
-    description: "Bảo vệ quyền lợi cho cả hai bên",
-  },
-  {
     icon: Camera,
     title: "Gọi ý thợ quay phù hợp theo style - ngân sách",
     description: "AI matching thông minh",
+  },
+  {
+    icon: Users,
+    title: "Đảm bảo 2 chiều & ảnh hậu trường thực tế",
+    description: "Bảo vệ quyền lợi cho cả hai bên",
   },
   {
     icon: Star,
@@ -142,7 +142,7 @@ export const HERO_CONTENT = {
   title: "Kết nối nhanh chóng với thợ quay phim đáng tin cậy.",
   subtitle:
     "CamCrew giúp bạn kết nối với thợ quay đã được xác minh, đúng phong cách, đúng lịch, đúng ngân sách.",
-  primaryButton: "Đăng dự án →",
+  primaryButton: "Đăng job ngay →",
   secondaryButton: "Tìm thợ quay →",
 };
 
@@ -151,6 +151,6 @@ export const CTA_CONTENT = {
   title: "SẴN SÀNG BẮT ĐẦU DỰ ÁN TIẾP THEO?",
   subtitle:
     "CamCrew giúp bạn thuê thợ quay phù hợp nhanh chóng, minh bạch và an toàn.",
-  primaryButton: "Đăng dự án →",
-  secondaryButton: "Tìm thợ quay →",
+  primaryButton: "Đăng job ngay →",
+  secondaryButton: "Tìm thợ ngay →",
 };

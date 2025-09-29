@@ -1,51 +1,73 @@
-import React from 'react';
-import { Play } from 'lucide-react';
-import { FEATURES_DATA } from '../../data/constants';
+import React from "react";
+import { FEATURES_DATA } from "../../data/constants";
+import { CheckCircle } from "lucide-react";
+import whyChoose1 from "../../assets/images/sections/why_choose_1.png";
+import whyChoose2 from "../../assets/images/sections/why_choose_2.png";
 
 const WhyChooseSection = () => {
+  // Chia 2 cột cho đẹp (nếu FEATURES_DATA có 4 items)
+  const leftCol = FEATURES_DATA.slice(0, 2);
+  const rightCol = FEATURES_DATA.slice(2);
+
   return (
-    <section className="bg-black text-white py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          TẠI SAO NÊN CHỌN<br />
-          <span className="text-orange-500">CAMCREW</span>
-        </h2>
-        
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          <div className="space-y-6">
-            {FEATURES_DATA.slice(0, 2).map((feature, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="text-orange-500 mt-1 p-2 bg-gray-800 rounded-lg">
-                  <feature.icon className="w-6 h-6" />
+    <section className="bg-black text-white pt-20 pb-30">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-8">
+              TẠI SAO NÊN CHỌN
+              <br />
+              <span className="text-[#FF9500]">CAMCREW</span>
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+              {leftCol.map((feature, idx) => (
+                <div key={`l-${idx}`} className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-7 h-7 rounded-full bg-transparent border border-orange-500/60 flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-[#FF9500]" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1 text-lg">{feature.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-lg">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
+              ))}
+
+              {rightCol.map((feature, idx) => (
+                <div key={`r-${idx}`} className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-7 h-7 rounded-full bg-transparent border border-orange-500/60 flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-[#FF9500]" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1 text-lg">{feature.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          
-          <div className="space-y-6">
-            {FEATURES_DATA.slice(2).map((feature, index) => (
-              <div key={index + 2} className="flex items-start space-x-4">
-                <div className="text-orange-500 mt-1 p-2 bg-gray-800 rounded-lg">
-                  <feature.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-lg">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="mt-12 flex justify-center">
-          <div className="w-80 h-52 bg-gray-800 rounded-xl flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent"></div>
-            <Play className="w-16 h-16 text-orange-500 relative z-10" />
-            <div className="absolute top-4 right-4 text-xs text-gray-400">Demo Video</div>
+
+          <div className="relative flex justify-center lg:justify-start">
+
+            <img
+              src={whyChoose1}
+              alt="Why choose CamCrew 1"
+              className="relative z-20 w-72 md:w-96 h-96 object-cover rounded-lg shadow-xl"
+            />
+
+            <img
+              src={whyChoose2}
+              alt="Why choose CamCrew 2"
+              className="absolute top-28 md:top-28 left-40 md:left-60 z-10 w-56 md:w-80 h-72 md:h-80 object-cover rounded-lg shadow-xl"
+            />
           </div>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
+import horizontal_logo from "../assets/images/logo/horizontal_logo_with_text.png";
+import { forgotPassword, verifyOTP, resetPassword } from "../api/user";
+import { NavLink } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
-  const [step, setStep] = useState("email"); // 'email' | 'verify' | 'reset'
+  const [step, setStep] = useState("email"); // email -> verify -> reset
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -11,7 +14,6 @@ const ForgotPasswordPage = () => {
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
 
-  // resend cooldown
   const RESEND_SECONDS = 60;
   const [resendLeft, setResendLeft] = useState(0);
 
@@ -38,13 +40,18 @@ const ForgotPasswordPage = () => {
 
     try {
       setLoading(true);
-      // TODO: gọi API gửi mã xác thực tới email
-      // await api.auth.forgotPassword({ email })
+
+      await forgotPassword({ email: email.trim() });
+
       setStep("verify");
       setNotice(`Đã gửi mã xác thực tới ${email.trim()}.`);
       setResendLeft(RESEND_SECONDS);
     } catch (err) {
-      setError("Gửi mã thất bại. Vui lòng thử lại.");
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Gửi mã thất bại. Vui lòng thử lại.";
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -54,15 +61,17 @@ const ForgotPasswordPage = () => {
     if (resendLeft > 0) return;
     setError("");
     setNotice("");
-
     try {
       setLoading(true);
-      // TODO: gọi API resend code
-      // await api.auth.resendCode({ email })
+      await forgotPassword({ email: email.trim() });
       setNotice(`Đã gửi lại mã tới ${email.trim()}.`);
       setResendLeft(RESEND_SECONDS);
     } catch (err) {
-      setError("Gửi lại mã thất bại. Vui lòng thử lại.");
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Gửi lại mã thất bại. Vui lòng thử lại.";
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -80,12 +89,16 @@ const ForgotPasswordPage = () => {
 
     try {
       setLoading(true);
-      // TODO: verify code
-      // await api.auth.verifyCode({ email, code })
-      setStep("reset");
+      await verifyOTP({ email: email.trim(), otp: code.trim() });
+
       setNotice("Mã xác thực hợp lệ. Vui lòng đặt mật khẩu mới.");
+      setStep("reset");
     } catch (err) {
-      setError("Mã không đúng hoặc đã hết hạn.");
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Mã không đúng hoặc đã hết hạn.";
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -107,29 +120,31 @@ const ForgotPasswordPage = () => {
 
     try {
       setLoading(true);
-      // TODO: reset password
-      // await api.auth.resetPassword({ email, code, newPassword })
+      await resetPassword({ email: email.trim(), newPassword });
+
       setNotice("Mật khẩu đã được đặt lại thành công! Bạn có thể đăng nhập.");
-      // Option: chuyển hướng sang trang đăng nhập
     } catch (err) {
-      setError("Không thể đặt lại mật khẩu. Vui lòng thử lại.");
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Không thể đặt lại mật khẩu. Vui lòng thử lại.";
+      setError(msg);
     } finally {
       setLoading(false);
     }
   };
 
-  // ---------- Screens ----------
   if (step === "email") {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="bg-black rounded-lg p-8 w-full max-w-md">
           <div className="text-center mb-8">
-            <img
-              src="assets/images/logo/logo_square.png"
-              alt="CamCrew"
-              className="w-12 h-12 mx-auto mb-4"
-            />
-            <h1 className="text-white text-2xl font-bold mb-2">Quên mật khẩu</h1>
+            <div className="flex items-center justify-center">
+              <img src={horizontal_logo} alt="CamCrew" className="h-8 mb-4" />
+            </div>
+            <h1 className="text-white text-2xl font-bold mb-2">
+              Quên mật khẩu
+            </h1>
             <p className="text-gray-400">
               Nhập email đã đăng ký để nhận mã xác thực.
             </p>
@@ -153,7 +168,7 @@ const ForgotPasswordPage = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-gray-700 text-white rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full bg-[#D9D9D9] text-black rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 autoComplete="email"
                 required
               />
@@ -173,14 +188,20 @@ const ForgotPasswordPage = () => {
 
             <div className="text-center text-gray-400 text-sm mt-6">
               Trở lại{" "}
-              <a href="#" className="text-orange-500 hover:text-orange-400">
+              <NavLink
+                to="/login"
+                className="text-orange-500 hover:text-orange-400"
+              >
                 Đăng nhập
-              </a>
+              </NavLink>
               {" · "}
               Chưa có tài khoản?{" "}
-              <a href="#" className="text-orange-500 hover:text-orange-400">
+              <NavLink
+                to="/register"
+                className="text-orange-500 hover:text-orange-400"
+              >
                 Đăng ký
-              </a>
+              </NavLink>
             </div>
           </form>
         </div>
@@ -198,9 +219,12 @@ const ForgotPasswordPage = () => {
               alt="CamCrew"
               className="w-12 h-12 mx-auto mb-4"
             />
-            <h1 className="text-white text-2xl font-bold mb-2">Xác thực Email</h1>
+            <h1 className="text-white text-2xl font-bold mb-2">
+              Xác thực Email
+            </h1>
             <p className="text-gray-400">
-              Nhập mã đã được gửi tới <span className="text-white">{email}</span>.
+              Nhập mã đã được gửi tới{" "}
+              <span className="text-white">{email}</span>.
             </p>
           </div>
 
@@ -222,7 +246,7 @@ const ForgotPasswordPage = () => {
                 placeholder="Nhập mã xác thực"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                className="w-full bg-gray-700 text-white rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full bg-[#D9D9D9] text-black rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 inputMode="numeric"
                 autoComplete="one-time-code"
                 required
@@ -262,7 +286,6 @@ const ForgotPasswordPage = () => {
     );
   }
 
-  // step === "reset"
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <div className="bg-black rounded-lg p-8 w-full max-w-md">
@@ -272,10 +295,6 @@ const ForgotPasswordPage = () => {
             alt="CamCrew"
             className="w-12 h-12 mx-auto mb-4"
           />
-          <h1 className="text-white text-2xl font-bold mb-2">Đặt lại mật khẩu</h1>
-          <p className="text-gray-400">
-            Mật khẩu mới phải khác mật khẩu trước đó.
-          </p>
         </div>
 
         {!!error && (
@@ -296,7 +315,7 @@ const ForgotPasswordPage = () => {
               placeholder="Mật khẩu mới"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full bg-gray-700 text-white rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full bg-[#D9D9D9] text-black rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
               autoComplete="new-password"
               required
               minLength={6}
@@ -309,7 +328,7 @@ const ForgotPasswordPage = () => {
               placeholder="Xác nhận mật khẩu"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full bg-gray-700 text-white rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full bg-[#D9D9D9] text-black rounded-lg px-4 py-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
               autoComplete="new-password"
               required
               minLength={6}
@@ -338,9 +357,12 @@ const ForgotPasswordPage = () => {
 
           <div className="text-center text-gray-400 text-sm mt-2">
             Nhớ lại mật khẩu?{" "}
-            <a href="#" className="text-orange-500 hover:text-orange-400">
+            <NavLink
+              to="/login"
+              className="text-orange-500 hover:text-orange-400"
+            >
               Đăng nhập
-            </a>
+            </NavLink>
           </div>
         </form>
       </div>

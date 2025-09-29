@@ -135,12 +135,12 @@ const LoginPage = () => {
               </div>
 
               <div className="text-right">
-                <a
-                  href="#"
+                <NavLink
+                  to="/forgot-password"
                   className="text-orange-500 hover:text-orange-400 text-sm"
                 >
                   Quên mật khẩu?
-                </a>
+                </NavLink>
               </div>
 
               <button

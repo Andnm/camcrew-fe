@@ -42,8 +42,8 @@ const PortfolioCarousel = () => {
   return (
     <section className="bg-white py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          MỘT SỐ THỢ QUAY <span className="text-orange-500">NỔI BẬT</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+          MỘT SỐ THỢ QUAY <span className="text-[#FF9500]">NỔI BẬT</span>
         </h2>
         
         <div className="relative max-w-5xl mx-auto">
@@ -109,7 +109,7 @@ const PortfolioCarousel = () => {
                   {({ isActive }) => (
                     <div
                       className={`
-                        relative w-80 h-80 rounded-2xl overflow-hidden cursor-pointer 
+                        relative w-80 h-100 rounded-2xl overflow-hidden cursor-pointer 
                         transition-all duration-500 ease-out mx-auto
                         ${isActive ? 'scale-100 z-20' : 'scale-90 z-10'}
                       `}
@@ -140,7 +140,6 @@ const PortfolioCarousel = () => {
                         </>
                       ) : (
                         <>
-                          {/* Side Cards Overlay */}
                           <div className="absolute inset-0 bg-black/40 transition-all duration-300"></div>                                        
                         </>
                       )}

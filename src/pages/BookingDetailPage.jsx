@@ -144,7 +144,7 @@ const BookingDetailPage = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <Calendar className="w-5 h-5 text-orange-500" />
+                    <Calendar className="w-5 h-5 text-[#FF9500]" />
                     <div>
                       <p className="text-white font-medium">{new Date(booking.schedule.date).toLocaleDateString('vi-VN')}</p>
                       <p className="text-gray-400 text-sm">{booking.schedule.time}</p>
@@ -152,7 +152,7 @@ const BookingDetailPage = () => {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-orange-500 mt-1" />
+                    <MapPin className="w-5 h-5 text-[#FF9500] mt-1" />
                     <div>
                       <p className="text-white font-medium">{booking.schedule.location}</p>
                       <p className="text-gray-400 text-sm">{booking.schedule.address}</p>
@@ -192,7 +192,7 @@ const BookingDetailPage = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center space-x-2 px-6 py-4 transition-colors ${
                       activeTab === tab.id
-                        ? 'border-b-2 border-orange-500 text-orange-500'
+                        ? 'border-b-2 border-orange-500 text-[#FF9500]'
                         : 'text-gray-400 hover:text-white'
                     }`}
                   >
@@ -256,7 +256,7 @@ const BookingDetailPage = () => {
                     {booking.notes.map((note, index) => (
                       <div key={index} className="bg-gray-700 rounded-lg p-4">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-orange-500 font-medium">{note.author}</span>
+                          <span className="text-[#FF9500] font-medium">{note.author}</span>
                           <span className="text-gray-400 text-sm">{new Date(note.date).toLocaleDateString('vi-VN')}</span>
                         </div>
                         <p className="text-gray-300">{note.content}</p>
@@ -400,7 +400,7 @@ const BookingDetailPage = () => {
                 </div>
               </div>
               
-              <button className="w-full mt-4 border-2 border-dashed border-gray-600 rounded-lg p-3 text-gray-400 hover:border-orange-500 hover:text-orange-500 transition-colors">
+              <button className="w-full mt-4 border-2 border-dashed border-gray-600 rounded-lg p-3 text-gray-400 hover:border-orange-500 hover:text-[#FF9500] transition-colors">
                 + Thêm file
               </button>
             </div>

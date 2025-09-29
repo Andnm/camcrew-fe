@@ -52,7 +52,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
               </div>
 
               <div className="mb-6">
-                <h3 className="text-orange-500 text-lg font-semibold mb-3">Chi tiết gói dịch vụ</h3>
+                <h3 className="text-[#FF9500] text-lg font-semibold mb-3">Chi tiết gói dịch vụ</h3>
                 <div className="text-gray-300 space-y-2">
                   <p>• Thời gian quay: Trọn buổi (8 giờ hoặc chiều)</p>
                   <p>• Giao sản phẩm: Highlight 3-5 phút + Full lễ 30-40 phút</p>
@@ -67,7 +67,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
               </div>
 
               <div>
-                <h3 className="text-orange-500 text-lg font-semibold mb-3">Demo video thực tế</h3>
+                <h3 className="text-[#FF9500] text-lg font-semibold mb-3">Demo video thực tế</h3>
                 <p className="text-gray-400 text-sm mb-4">Lễ cưới tại Thảo Điền | Quay & dựng gọi Cinematic + Highlight</p>
                 
                 <div className="relative bg-gray-700 rounded-lg overflow-hidden h-80">
@@ -104,7 +104,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
                   )}
                 </div>
                 <h3 className="text-white text-xl font-bold">{cameraman.full_name}</h3>
-                <p className="text-orange-500 text-sm">Cinematic Videographer</p>
+                <p className="text-[#FF9500] text-sm">Cinematic Videographer</p>
                 <div className="flex items-center justify-center mt-2">
                   <span className="text-green-500 text-sm">Đã xác minh</span>
                 </div>
@@ -151,8 +151,8 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
                     </div>
                     <div className="flex-1">
                       <h4 className="text-white font-medium text-sm">{relatedService.title}</h4>
-                      <p className="text-orange-500 text-sm">{relatedService.categories.join(' / ')}</p>
-                      <p className="text-orange-500 font-semibold text-sm">
+                      <p className="text-[#FF9500] text-sm">{relatedService.categories.join(' / ')}</p>
+                      <p className="text-[#FF9500] font-semibold text-sm">
                         {new Intl.NumberFormat('vi-VN').format(relatedService.amount)} VND
                       </p>
                       <p className="text-gray-400 text-xs">{relatedService.areas[0]}</p>
@@ -160,7 +160,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
                   </div>
                 ))}
               </div>
-              <button className="w-full mt-4 text-orange-500 hover:text-orange-400 text-sm font-medium">
+              <button className="w-full mt-4 text-[#FF9500] hover:text-orange-400 text-sm font-medium">
                 Xem thêm
               </button>
             </div>
@@ -188,7 +188,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-white text-lg font-semibold">Đánh giá</h3>
                 <div className="flex items-center">
-                  <div className="flex text-orange-500 mr-2">
+                  <div className="flex text-[#FF9500] mr-2">
                     {[1,2,3,4,5].map(star => (
                       <Star key={star} className="w-4 h-4 fill-current" />
                     ))}
@@ -214,7 +214,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
                 </div>
               </div>
 
-              <button className="w-full mt-4 text-orange-500 hover:text-orange-400 font-medium flex items-center justify-center">
+              <button className="w-full mt-4 text-[#FF9500] hover:text-orange-400 font-medium flex items-center justify-center">
                 Viết bài đánh giá
                 <Share2 className="w-4 h-4 ml-2" />
               </button>
@@ -227,7 +227,7 @@ const ServiceDetailPage = ({ serviceId = 100 }) => {
                       <div>
                         <p className="text-white font-medium text-sm">Nguyễn Văn B</p>
                         <p className="text-gray-400 text-xs">Khách hàng</p>
-                        <div className="flex text-orange-500 text-xs">
+                        <div className="flex text-[#FF9500] text-xs">
                           {[1,2,3,4,5].map(star => (
                             <Star key={star} className={`w-3 h-3 ${star <= review.rating ? 'fill-current' : ''}`} />
                           ))}

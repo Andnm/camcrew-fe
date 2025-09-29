@@ -375,7 +375,7 @@ const ServiceManagementPage = () => {
                 <p className="text-white text-3xl font-bold">
                   {(stats.totalRevenue / 1000000).toFixed(0)}M
                 </p>
-                <p className="text-orange-500 text-sm">
+                <p className="text-[#FF9500] text-sm">
                   {stats.totalBookings > 0
                     ? (
                         stats.totalRevenue /
@@ -434,7 +434,7 @@ const ServiceManagementPage = () => {
                     <span
                       className={`${
                         activeTab === tab.id
-                          ? "bg-white text-orange-500"
+                          ? "bg-white text-[#FF9500]"
                           : "bg-orange-500 text-white"
                       } text-xs rounded-full px-2 py-1`}
                     >
@@ -515,7 +515,7 @@ const ServiceManagementPage = () => {
                     </div>
 
                     <div className="text-right ml-6">
-                      <p className="text-orange-500 font-bold text-xl mb-2">
+                      <p className="text-[#FF9500] font-bold text-xl mb-2">
                         {new Intl.NumberFormat("vi-VN").format(service.amount)}{" "}
                         VND
                       </p>

@@ -282,7 +282,7 @@ const ChatMessagesPage = () => {
                     />
                     <button
                       type="submit"
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-orange-500 hover:text-orange-400 transition-colors"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-[#FF9500] hover:text-orange-400 transition-colors"
                     >
                       <Send className="w-5 h-5" />
                     </button>

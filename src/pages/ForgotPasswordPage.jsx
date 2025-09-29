@@ -190,7 +190,7 @@ const ForgotPasswordPage = () => {
               Trở lại{" "}
               <NavLink
                 to="/login"
-                className="text-orange-500 hover:text-orange-400"
+                className="text-[#FF9500] hover:text-orange-400"
               >
                 Đăng nhập
               </NavLink>
@@ -198,7 +198,7 @@ const ForgotPasswordPage = () => {
               Chưa có tài khoản?{" "}
               <NavLink
                 to="/register"
-                className="text-orange-500 hover:text-orange-400"
+                className="text-[#FF9500] hover:text-orange-400"
               >
                 Đăng ký
               </NavLink>
@@ -273,8 +273,8 @@ const ForgotPasswordPage = () => {
                 disabled={resendLeft > 0 || loading}
                 className={`${
                   resendLeft > 0 || loading
-                    ? "text-orange-500/60 cursor-not-allowed"
-                    : "text-orange-500 hover:text-orange-400"
+                    ? "text-[#FF9500]/60 cursor-not-allowed"
+                    : "text-[#FF9500] hover:text-orange-400"
                 }`}
               >
                 {resendLeft > 0 ? `Gửi lại sau ${resendLeft}s` : "Gửi lại mã"}
@@ -359,7 +359,7 @@ const ForgotPasswordPage = () => {
             Nhớ lại mật khẩu?{" "}
             <NavLink
               to="/login"
-              className="text-orange-500 hover:text-orange-400"
+              className="text-[#FF9500] hover:text-orange-400"
             >
               Đăng nhập
             </NavLink>

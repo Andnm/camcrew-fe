@@ -6,7 +6,7 @@ export async function getMe() {
 }
 
 export async function forgotPassword(payload) {
-  const res = await api.post("/users/forgotPassword", payload);
+  const res = await api.post("/users/forgot-password", payload);
   return res.data;
 }
 
@@ -20,3 +20,7 @@ export async function resetPassword(payload) {
   return res.data;
 }
 
+export async function updateUserProfile(payload) {
+  const res = await api.put(`/users`, payload);
+  return res.data;
+}

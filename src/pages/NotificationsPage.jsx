@@ -37,7 +37,7 @@ const NotificationsPage = () => {
       case 'booking':
         return <Clock className="w-5 h-5 text-blue-500" />;
       case 'service':
-        return <Bell className="w-5 h-5 text-orange-500" />;
+        return <Bell className="w-5 h-5 text-[#FF9500]" />;
       default:
         return <Bell className="w-5 h-5 text-gray-400" />;
     }
@@ -120,7 +120,7 @@ const NotificationsPage = () => {
                               {notification.time}
                             </span>
                             {!notification.isRead && (
-                              <span className="text-orange-500 text-sm font-medium flex items-center">
+                              <span className="text-[#FF9500] text-sm font-medium flex items-center">
                                 ✓ Đã đọc
                               </span>
                             )}

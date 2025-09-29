@@ -138,7 +138,7 @@ const RegisterPage = () => {
                 Bạn đã có tài khoản?{" "}
                 <NavLink
                   to="/login"
-                  className="text-orange-500 hover:text-orange-400"
+                  className="text-[#FF9500] hover:text-orange-400"
                 >
                   Đăng nhập
                 </NavLink>

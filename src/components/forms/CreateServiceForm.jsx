@@ -61,7 +61,7 @@ const CreateServiceForm = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-orange-500 font-medium mb-2">
+                <label className="block text-[#FF9500] font-medium mb-2">
                   Tiêu đề gói dịch vụ*
                 </label>
                 <input
@@ -75,7 +75,7 @@ const CreateServiceForm = () => {
               </div>
 
               <div>
-                <label className="block text-orange-500 font-medium mb-2">
+                <label className="block text-[#FF9500] font-medium mb-2">
                   Giá dịch vụ*
                 </label>
                 <input
@@ -90,7 +90,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Phong cách quay (chọn 1 hoặc nhiều)*
               </label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -100,7 +100,7 @@ const CreateServiceForm = () => {
                       type="checkbox"
                       checked={formData.styles.includes(style)}
                       onChange={() => handleCheckboxChange('styles', style)}
-                      className="mr-2 w-4 h-4 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
+                      className="mr-2 w-4 h-4 text-[#FF9500] bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
                     />
                     {style}
                   </label>
@@ -109,7 +109,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Dịch vụ áp dụng cho (chọn 1 hoặc nhiều)*
               </label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -119,7 +119,7 @@ const CreateServiceForm = () => {
                       type="checkbox"
                       checked={formData.categories.includes(category)}
                       onChange={() => handleCheckboxChange('categories', category)}
-                      className="mr-2 w-4 h-4 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
+                      className="mr-2 w-4 h-4 text-[#FF9500] bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
                     />
                     {category}
                   </label>
@@ -128,7 +128,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Mô tả chi tiết dịch vụ*
               </label>
               <textarea
@@ -143,7 +143,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Khu vực hoạt động*
               </label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -153,7 +153,7 @@ const CreateServiceForm = () => {
                       type="checkbox"
                       checked={formData.areas.includes(area)}
                       onChange={() => handleCheckboxChange('areas', area)}
-                      className="mr-2 w-4 h-4 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
+                      className="mr-2 w-4 h-4 text-[#FF9500] bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
                     />
                     {area}
                   </label>
@@ -162,7 +162,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Thời gian rảnh nhận job*
               </label>
               <div className="grid grid-cols-3 gap-3 mb-4">
@@ -172,7 +172,7 @@ const CreateServiceForm = () => {
                       type="checkbox"
                       checked={formData.timeOfDay.includes(time)}
                       onChange={() => handleCheckboxChange('timeOfDay', time)}
-                      className="mr-2 w-4 h-4 text-orange-500 bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
+                      className="mr-2 w-4 h-4 text-[#FF9500] bg-gray-700 border-gray-600 rounded focus:ring-orange-500"
                     />
                     {time}
                   </label>
@@ -193,7 +193,7 @@ const CreateServiceForm = () => {
             </div>
 
             <div>
-              <label className="block text-orange-500 font-medium mb-2">
+              <label className="block text-[#FF9500] font-medium mb-2">
                 Video demo (tối đa 2-3 video)*
               </label>
               <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center">

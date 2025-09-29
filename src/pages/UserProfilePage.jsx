@@ -25,7 +25,7 @@ import { getMembershipLabel } from "../utils/helper";
 
 const UserProfilePage = () => {
   const { user, logout } = useAuth();
-
+  console.log("user: ", user);
   const [activeTab, setActiveTab] = useState("personal");
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -542,7 +542,7 @@ const UserProfilePage = () => {
                   {formData.fullName || user?.full_name || "Người dùng"}
                 </h2>
                 <p className="text-gray-400">
-                  {user?.role === "cameraman" ? "Thợ quay phim" : "Khách"}
+                  {user?.role_name === "cameraman" ? "Thợ quay phim" : "Khách"}
                 </p>
                 <div className="mt-2">
                   <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm">

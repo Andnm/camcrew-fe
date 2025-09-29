@@ -58,7 +58,7 @@ const BlogPage = () => {
               <p className="text-gray-300 leading-relaxed">
                 {blogs[0].content}
               </p>
-              <button className="flex items-center text-orange-500 hover:text-orange-400 mt-4 font-medium">
+              <button className="flex items-center text-[#FF9500] hover:text-orange-400 mt-4 font-medium">
                 Đọc thêm <ArrowRight className="w-4 h-4 ml-2" />
               </button>
             </div>
@@ -134,7 +134,7 @@ const BlogPage = () => {
                   <p className="text-gray-300 text-sm leading-relaxed">
                     {blog.content}
                   </p>
-                  <button className="flex items-center text-orange-500 hover:text-orange-400 mt-4 text-sm font-medium">
+                  <button className="flex items-center text-[#FF9500] hover:text-orange-400 mt-4 text-sm font-medium">
                     Đọc thêm <ArrowRight className="w-4 h-4 ml-1" />
                   </button>
                 </div>

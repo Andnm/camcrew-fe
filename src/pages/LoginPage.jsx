@@ -8,7 +8,7 @@ import { login, loginGoogle } from "../api/auth";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../lib/firebase";
 import toast from "react-hot-toast";
-import { getMe } from "../api/user";
+import { getMe } from "../api/users";
 import { notSupportFunction } from "../utils/helper";
 
 const LoginPage = () => {
@@ -29,15 +29,19 @@ const LoginPage = () => {
     setSubmitting(true);
     try {
       const data = await login({ identifier, password });
-      
+
       if (data?.accessToken) {
         localStorage.setItem("camcrew_token", data.accessToken);
 
         const me = await getMe();
         setUser(me);
-      }
 
-      navigate("/");
+        if (me?.role_name === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+      }
     } catch (err) {
       setErrorMsg(err?.message || "Đăng nhập thất bại");
     } finally {
@@ -91,7 +95,7 @@ const LoginPage = () => {
                 Bạn chưa có tài khoản?{" "}
                 <NavLink
                   to="/register"
-                  className="text-orange-500 hover:text-orange-400"
+                  className="text-[#FF9500] hover:text-orange-400"
                 >
                   Đăng ký
                 </NavLink>
@@ -143,7 +147,7 @@ const LoginPage = () => {
               <div className="text-right">
                 <NavLink
                   to="/forgot-password"
-                  className="text-orange-500 hover:text-orange-400 text-sm"
+                  className="text-[#FF9500] hover:text-orange-400 text-sm"
                 >
                   Quên mật khẩu?
                 </NavLink>

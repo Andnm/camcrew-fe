@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TrendingUp, Users, DollarSign, Calendar, Eye, BarChart3, PieChart } from 'lucide-react';
-import Header from '../components/layout/Header';
+import Header from '../../components/layout/Header';
 
 const AdminAnalyticsPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('thisMonth');
@@ -57,7 +57,6 @@ const AdminAnalyticsPage = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <Header />
       
       <div className="max-w-7xl mx-auto p-6">
         <div className="mb-8">
@@ -229,7 +228,7 @@ const AdminAnalyticsPage = () => {
             <div className="mt-6 p-4 bg-gray-700 rounded-lg">
               <p className="text-gray-400 text-sm">Danh mục phổ biến nhất</p>
               <p className="text-white font-semibold">{analytics.serviceCategories[0].name}</p>
-              <p className="text-orange-500 text-sm">{analytics.serviceCategories[0].percentage}% tổng booking</p>
+              <p className="text-[#FF9500] text-sm">{analytics.serviceCategories[0].percentage}% tổng booking</p>
             </div>
           </div>
         </div>
@@ -253,7 +252,7 @@ const AdminAnalyticsPage = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-orange-500 font-semibold">
+                    <p className="text-[#FF9500] font-semibold">
                       {(cameraman.revenue / 1000000).toFixed(0)}M VND
                     </p>
                   </div>

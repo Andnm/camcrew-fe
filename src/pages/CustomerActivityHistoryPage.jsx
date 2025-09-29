@@ -580,7 +580,7 @@ const UserProfilePage = () => {
                 <h3 className="text-lg font-semibold text-white mb-1">{service.title}</h3>
                 <p className="text-gray-300 mb-2">{service.cameraman}</p>
                 <div className="flex items-center space-x-4">
-                  <span className="text-orange-500 font-semibold text-lg">{formatCurrency(service.price)}</span>
+                  <span className="text-[#FF9500] font-semibold text-lg">{formatCurrency(service.price)}</span>
                   <div className="flex items-center space-x-1">
                     <Star className="w-4 h-4 text-yellow-400 fill-current" />
                     <span className="text-gray-300">{service.rating}</span>

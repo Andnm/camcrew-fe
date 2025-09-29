@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, Eye, CheckCircle, XCircle, Clock, User, MessageCircle, Search, Filter, Download } from 'lucide-react';
 import { Table, Button, Badge, Modal, Input, Select, Tag, Tooltip } from 'antd';
-import Header from '../components/layout/Header';
+import Header from '../../components/layout/Header';
 
 const AdminReportsPage = () => {
   const [selectedReport, setSelectedReport] = useState(null);
@@ -280,7 +280,7 @@ const AdminReportsPage = () => {
       <div className="max-w-7xl mx-auto p-6">
         <div className="mb-8">
           <h1 className="text-white text-3xl font-bold flex items-center space-x-2">
-            <AlertTriangle className="w-8 h-8 text-orange-500" />
+            <AlertTriangle className="w-8 h-8 text-[#FF9500]" />
             <span>Quản lý Báo cáo</span>
           </h1>
           <p className="text-gray-400 mt-2">Xử lý các báo cáo vi phạm và khiếu nại từ người dùng</p>
@@ -304,7 +304,7 @@ const AdminReportsPage = () => {
                 <p className="text-gray-400 text-sm">Chờ xử lý</p>
                 <p className="text-white text-2xl font-bold">{stats.pending}</p>
               </div>
-              <Clock className="w-6 h-6 text-orange-500" />
+              <Clock className="w-6 h-6 text-[#FF9500]" />
             </div>
           </div>
 
@@ -413,7 +413,7 @@ const AdminReportsPage = () => {
         <Modal
           title={
             <div className="flex items-center space-x-2">
-              <AlertTriangle className="w-5 h-5 text-orange-500" />
+              <AlertTriangle className="w-5 h-5 text-[#FF9500]" />
               <span>Chi tiết báo cáo #{selectedReport?.id}</span>
             </div>
           }

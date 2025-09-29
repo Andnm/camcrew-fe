@@ -9,9 +9,7 @@ export default function AccountLayout() {
         <div className="flex flex-col lg:flex-row gap-8">
           <AccountSidebar />
           <main className="flex-1">
-            <div className="bg-gray-800 rounded-lg p-8">
-              <Outlet />
-            </div>
+            <Outlet />
           </main>
         </div>
       </div>

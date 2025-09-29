@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import AccountLayout from "./components/account-layout/AccountLayout";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import AdminLayout from "./components/layout/AdminLayout";
 
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage"));
@@ -25,17 +26,20 @@ const Notifications = lazy(() => import("./pages/account/Notifications"));
 const MyRentals = lazy(() => import("./pages/account/MyRentals"));
 const Messages = lazy(() => import("./pages/account/Messages"));
 const BookingHistory = lazy(() => import("./pages/account/BookingHistory"));
+const SubscriptionUpgrade = lazy(() => import("./pages/account/SubscriptionUpgrade"));
 
 const NotificationsPage = lazy(() => import("./pages/NotificationsPage"));
-const SubscriptionUpgradePage = lazy(() =>
-  import("./pages/SubscriptionUpgradePage")
-);
 const CustomerActivityHistoryPage = lazy(() =>
   import("./pages/CustomerActivityHistoryPage")
 );
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const AdminReportsPage = lazy(() => import("./pages/AdminReportsPage"));
-const AdminAnalyticsPage = lazy(() => import("./pages/AdminAnalyticsPage"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
+const AdminServicesPage = lazy(() => import("./pages/admin/AdminServicesPage"));
+const AdminBookingsPage = lazy(() => import("./pages/admin/AdminBookingsPage"));
+const AdminAnalyticsPage = lazy(() =>
+  import("./pages/admin/AdminAnalyticsPage")
+);
+
 const BookingManagementPage = lazy(() =>
   import("./pages/BookingManagementPage")
 );
@@ -103,10 +107,7 @@ function AdminRoute({ children }) {
   if (!ready) return <div className="text-white p-6">Đang tải...</div>;
   if (!user) return <Navigate to="/login" replace />;
 
-  const isAdmin =
-    user?.role === "admin" ||
-    user?.roles?.includes?.("admin") ||
-    user?.isAdmin === true;
+  const isAdmin = user?.role_name === "admin";
 
   if (!isAdmin) {
     toast.error("Bạn không có quyền truy cập.");
@@ -147,7 +148,8 @@ export default function App() {
                 <Route path="bookings" element={<BookingHistory />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="notifications" element={<Notifications />} />
-                <Route path="subscription" element={<MyRentals />} />
+                <Route path="my-rentals" element={<MyRentals />} />
+                <Route path="upgrade" element={<SubscriptionUpgrade />} />
               </Route>
 
               <Route
@@ -155,14 +157,6 @@ export default function App() {
                 element={
                   <ProtectedRoute>
                     <NotificationsPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/subscription"
-                element={
-                  <ProtectedRoute>
-                    <SubscriptionUpgradePage />
                   </ProtectedRoute>
                 }
               />
@@ -224,11 +218,31 @@ export default function App() {
                 }
               />
 
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+
+            <Route element={<AdminLayout />}>
               <Route
                 path="/admin"
                 element={
                   <AdminRoute>
                     <AdminDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/services"
+                element={
+                  <AdminRoute>
+                    <AdminServicesPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/bookings"
+                element={
+                  <AdminRoute>
+                    <AdminBookingsPage />
                   </AdminRoute>
                 }
               />
@@ -248,8 +262,6 @@ export default function App() {
                   </AdminRoute>
                 }
               />
-
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
         </Suspense>

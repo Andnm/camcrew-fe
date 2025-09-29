@@ -33,7 +33,6 @@ export default function PersonalInfo() {
   };
 
   const handleSave = () => {
-    // TODO: call API update profile
     setIsEditing(false);
   };
   const handleCancel = () => setIsEditing(false);

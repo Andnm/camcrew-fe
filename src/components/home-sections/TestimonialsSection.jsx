@@ -31,7 +31,7 @@ const TestimonialsSection = () => {
                 </p>
                 
                 <div className="border-t border-gray-200 pt-4">
-                  <p className="font-semibold text-orange-500 text-lg">{testimonial.name}</p>
+                  <p className="font-semibold text-[#FF9500] text-lg">{testimonial.name}</p>
                   <p className="text-gray-500 text-sm mt-1">Khách hàng đã xác thực</p>
                 </div>
               </div>
@@ -42,15 +42,15 @@ const TestimonialsSection = () => {
         <div className="mt-12 text-center">
           <div className="flex justify-center items-center space-x-8 text-gray-500">
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-500">500+</div>
+              <div className="text-2xl font-bold text-[#FF9500]">500+</div>
               <div className="text-sm">Dự án hoàn thành</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-500">4.9/5</div>
+              <div className="text-2xl font-bold text-[#FF9500]">4.9/5</div>
               <div className="text-sm">Điểm đánh giá</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-500">200+</div>
+              <div className="text-2xl font-bold text-[#FF9500]">200+</div>
               <div className="text-sm">Thợ quay chuyên nghiệp</div>
             </div>
           </div>

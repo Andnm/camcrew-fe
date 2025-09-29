@@ -82,7 +82,7 @@ const VerifyPage = () => {
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-gray-800 rounded-2xl p-8 text-center">
         <div className="mb-4 flex justify-center">
-          {status === "pending" && <Loader2 className="w-12 h-12 animate-spin text-orange-500" />}
+          {status === "pending" && <Loader2 className="w-12 h-12 animate-spin text-[#FF9500]" />}
           {status === "success" && <CheckCircle2 className="w-12 h-12 text-green-500" />}
           {status === "error" && <XCircle className="w-12 h-12 text-red-500" />}
         </div>

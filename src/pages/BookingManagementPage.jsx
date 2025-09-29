@@ -152,7 +152,7 @@ const BookingManagementPage = () => {
                     >
                       <span className="text-sm font-medium">{tab.label}</span>
                       {tab.count > 0 && (
-                        <span className={`${activeTab === tab.id ? 'bg-white text-orange-500' : 'bg-orange-500 text-white'} text-xs rounded-full px-2 py-1`}>
+                        <span className={`${activeTab === tab.id ? 'bg-white text-[#FF9500]' : 'bg-orange-500 text-white'} text-xs rounded-full px-2 py-1`}>
                           {tab.count}
                         </span>
                       )}
@@ -173,7 +173,7 @@ const BookingManagementPage = () => {
                           <div>
                             <h3 className="text-white font-semibold text-lg">{booking.customer.name}</h3>
                             <p className="text-gray-400 text-sm">{booking.service}</p>
-                            <p className="text-orange-500 font-semibold">
+                            <p className="text-[#FF9500] font-semibold">
                               {new Intl.NumberFormat('vi-VN').format(booking.amount)} VND
                             </p>
                           </div>
@@ -248,7 +248,7 @@ const BookingManagementPage = () => {
                               {[...Array(5)].map((_, i) => (
                                 <Star 
                                   key={i} 
-                                  className={`w-4 h-4 ${i < booking.rating ? 'text-orange-500 fill-current' : 'text-gray-400'}`} 
+                                  className={`w-4 h-4 ${i < booking.rating ? 'text-[#FF9500] fill-current' : 'text-gray-400'}`} 
                                 />
                               ))}
                               <span className="text-gray-300 text-sm ml-2">Đã đánh giá</span>

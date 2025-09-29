@@ -103,7 +103,7 @@ const PaymentPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Số tiền:</span>
-                  <span className="text-orange-500 font-bold">
+                  <span className="text-[#FF9500] font-bold">
                     {new Intl.NumberFormat('vi-VN').format(booking.deposit)} VND
                   </span>
                 </div>
@@ -241,7 +241,7 @@ const PaymentPage = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Nội dung CK:</span>
-                    <span className="text-orange-500">BOOKING{booking.id}</span>
+                    <span className="text-[#FF9500]">BOOKING{booking.id}</span>
                   </div>
                 </div>
 
@@ -284,7 +284,7 @@ const PaymentPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Đặt cọc (25%):</span>
-                  <span className="text-orange-500 font-bold">{new Intl.NumberFormat('vi-VN').format(booking.deposit)} VND</span>
+                  <span className="text-[#FF9500] font-bold">{new Intl.NumberFormat('vi-VN').format(booking.deposit)} VND</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">Còn lại:</span>

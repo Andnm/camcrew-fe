@@ -29,8 +29,14 @@ const LoginPage = () => {
     setSubmitting(true);
     try {
       const data = await login({ identifier, password });
-      if (data?.token) localStorage.setItem("camcrew_token", data.token);
-      if (data?.user) setUser(data.user);
+      
+      if (data?.accessToken) {
+        localStorage.setItem("camcrew_token", data.accessToken);
+
+        const me = await getMe();
+        setUser(me);
+      }
+
       navigate("/");
     } catch (err) {
       setErrorMsg(err?.message || "Đăng nhập thất bại");

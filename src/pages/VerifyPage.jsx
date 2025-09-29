@@ -35,7 +35,7 @@ const VerifyPage = () => {
 
         const data = await verifyEmail({ token: tokenFromUrl });
 
-        const newToken = data?.token || data?.accessToken || data?.access_token;
+        const newToken = data?.accessToken;
         if (!newToken) {
           throw new Error("Xác minh thành công nhưng không nhận được token đăng nhập.");
         }

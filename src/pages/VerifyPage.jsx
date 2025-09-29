@@ -4,7 +4,7 @@ import { CheckCircle2, Loader2, XCircle } from "lucide-react";
 import { verifyEmail } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { getMe } from "../api/user";
+import { getMe } from "../api/users";
 
 function extractUpnToken(href) {
   const match = href.match(/[?&]upn=([^&#]+)/);

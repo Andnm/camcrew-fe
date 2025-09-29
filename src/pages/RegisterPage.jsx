@@ -9,7 +9,7 @@ import { registerUser } from "../api/auth";
 import { loginGoogle } from "../api/auth";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../lib/firebase";
-import { getMe } from "../api/user";
+import { getMe } from "../api/users";
 import { useAuth } from "../context/AuthContext";
 
 const RegisterPage = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Check, Star, Zap } from 'lucide-react';
 
-const SubscriptionUpgrade = () => {
+const SubscriptionUpgradePage = () => {
   const [selectedPlan, setSelectedPlan] = useState('6-month');
 
   const plans = [
@@ -62,17 +62,17 @@ const SubscriptionUpgrade = () => {
           <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Nâng cấp tài khoản
           </h1>
-          <h2 className="text-[#FF9500] text-2xl md:text-3xl font-bold">
+          <h2 className="text-orange-500 text-2xl md:text-3xl font-bold">
             Mở khóa nhiều quyền lợi hơn
           </h2>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
           {plans.map((plan) => (
             <div
               key={plan.id}
-              className={`${plan.cardClass} rounded-2xl p-8 border-2 transition-all duration-300 hover:scale-105 relative`}
+              className={`${plan.cardClass} rounded-2xl p-8 border-2 transition-all duration-300 hover:scale-105 relative flex flex-col h-full`}
             >
               {/* Popular Badge */}
               {plan.popular && (
@@ -86,12 +86,12 @@ const SubscriptionUpgrade = () => {
 
               {/* Plan Header */}
               <div className="mb-6">
-                <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
+                <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-black' : 'text-orange-500'}`}>
                   {plan.name}
                 </h3>
                 
                 <div className="flex items-baseline mb-4">
-                  <span className={`text-4xl md:text-5xl font-bold ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
+                  <span className={`text-4xl md:text-5xl font-bold ${plan.popular ? 'text-black' : 'text-orange-500'}`}>
                     {formatPrice(plan.price)}đ
                   </span>
                   <span className={`text-lg ml-1 ${plan.popular ? 'text-gray-800' : 'text-gray-400'}`}>
@@ -105,7 +105,7 @@ const SubscriptionUpgrade = () => {
               </div>
 
               {/* Features List */}
-              <div className="mb-8">
+              <div className="mb-8 flex-1">
                 <ul className="space-y-3">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -123,12 +123,14 @@ const SubscriptionUpgrade = () => {
               </div>
 
               {/* Subscribe Button */}
-              <button
-                onClick={() => handleSubscribe(plan)}
-                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 ${plan.buttonClass}`}
-              >
-                {plan.buttonText}
-              </button>
+              <div className="mt-auto">
+                <button
+                  onClick={() => handleSubscribe(plan)}
+                  className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 ${plan.buttonClass}`}
+                >
+                  {plan.buttonText}
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -216,4 +218,4 @@ const SubscriptionUpgrade = () => {
   );
 };
 
-export default SubscriptionUpgrade;
+export default SubscriptionUpgradePage;

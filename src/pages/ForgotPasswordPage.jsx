@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import horizontal_logo from "../assets/images/logo/horizontal_logo_with_text.png";
-import { forgotPassword, verifyOTP, resetPassword } from "../api/user";
+import { forgotPassword, verifyOTP, resetPassword } from "../api/users";
 import { NavLink } from "react-router-dom";
 
 const ForgotPasswordPage = () => {

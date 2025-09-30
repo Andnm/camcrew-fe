@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import { getMembershipLabel } from "../../utils/helper";
 import { customerSidebarItems, cameramanExtraItems } from "../../utils/constants";
 
-import { uploadToCloudinary } from "../../api/upload"; 
+import { uploadImageToCloudinary } from "../../api/upload"; 
 import { updateUserProfile } from "../../api/users";      
 
 export default function AccountSidebar() {
@@ -48,7 +48,7 @@ export default function AccountSidebar() {
     if (!file) return;
     try {
       setUploading(true);
-      const up = await uploadToCloudinary(file, "camcrew_avt");
+      const up = await uploadImageToCloudinary(file, "camcrew_avt");
       if (!up?.url) throw new Error("Không lấy được URL ảnh sau khi upload.");
 
       const res = await updateUserProfile({ avatar_url: up.url });

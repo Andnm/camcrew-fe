@@ -16,8 +16,8 @@ export async function uploadToCloudinary(file, folder = "services_videos") {
                 body: formData,
             }
         );
+        console.log("res: ", res)
 
-        if (!res.ok) throw new Error("Upload failed");
         const data = await res.json();
         return {
             url: data.secure_url,

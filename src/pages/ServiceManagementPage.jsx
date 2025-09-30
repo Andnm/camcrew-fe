@@ -243,7 +243,6 @@ const ServiceManagementPage = () => {
           `Bạn có chắc muốn tạm khóa dịch vụ "${service.title}"?`
         );
         if (ok) {
-          // TODO: gọi API disable
           toast.success("Đã tạm khóa dịch vụ.");
         } else {
           toast("Đã hủy thao tác.", { icon: "↩️" });
@@ -256,7 +255,6 @@ const ServiceManagementPage = () => {
           `Kích hoạt lại dịch vụ "${service.title}"?`
         );
         if (ok) {
-          // TODO: gọi API enable
           toast.success("Đã kích hoạt dịch vụ.");
         } else {
           toast("Đã hủy thao tác.", { icon: "↩️" });
@@ -269,7 +267,6 @@ const ServiceManagementPage = () => {
           `Xóa dịch vụ "${service.title}"? Hành động này không thể hoàn tác.`
         );
         if (ok) {
-          // TODO: gọi API delete
           toast.success("Đã xóa dịch vụ.");
         } else {
           toast("Đã hủy thao tác.", { icon: "↩️" });

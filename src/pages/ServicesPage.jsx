@@ -6,6 +6,7 @@ import ServiceCardSkeleton from '../components/services/ServiceCardSkeleton';
 import Pagination from '../components/common/Pagination';
 import { listServices } from '../api/services';
 import { SERVICE_STYLES, SERVICE_CATEGORIES, SERVICE_AREAS, SERVICE_STATUS_OPTIONS } from '../utils/constants';
+import toast from 'react-hot-toast';
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
@@ -59,6 +60,7 @@ const ServicesPage = () => {
         totalPages: 0,
         totalResults: 0
       });
+      toast.error(error?.message)
     } finally {
       setLoading(false);
     }
@@ -180,7 +182,7 @@ const ServicesPage = () => {
 
                 <div>
                   <h3 className="text-[#FF9500] font-semibold mb-3">Theo địa điểm</h3>
-                  <select 
+                  <select
                     className="w-full bg-gray-700 text-white rounded-lg p-2 text-sm border border-gray-600 focus:border-orange-500 focus:outline-none mb-3"
                     onChange={(e) => {
                       if (e.target.value && !filters.areas.includes(e.target.value)) {
@@ -196,7 +198,7 @@ const ServicesPage = () => {
                       </option>
                     ))}
                   </select>
-                  
+
                   <div className="space-y-2">
                     {SERVICE_AREAS.map(area => (
                       <label key={area.value} className="flex items-center text-gray-300 text-sm hover:text-white cursor-pointer">
@@ -241,8 +243,8 @@ const ServicesPage = () => {
                     </div>
                   </div>
                   <div className="w-full h-2 bg-gray-700 rounded-lg relative overflow-hidden">
-                    <div 
-                      className="absolute h-2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-lg" 
+                    <div
+                      className="absolute h-2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-lg"
                       style={{
                         left: `${Math.max(0, (filters.min / 10000000) * 100)}%`,
                         width: `${Math.min(100, ((filters.max - filters.min) / 10000000) * 100)}%`

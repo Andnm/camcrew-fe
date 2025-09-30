@@ -6,11 +6,13 @@ import { getDetailServiceById } from '../api/services';
 import { SERVICE_STYLES, SERVICE_CATEGORIES, SERVICE_AREAS, SERVICE_TIME_OF_DAYS } from '../utils/constants';
 import ServiceDetailSkeleton from '../components/services/ServiceDetailSkeleton';
 import Breadcrumbs from '../components/common/Breadcrumbs';
+import CreateBookingModal from '../components/bookings/CreateBookingModal';
 
 const ServiceDetailPage = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [openBooking, setOpenBooking] = useState(false);
 
   useEffect(() => {
     const fetchServiceDetail = async () => {
@@ -104,10 +106,12 @@ const ServiceDetailPage = () => {
               </div>
 
               <div className="flex space-x-4 mb-8">
-                <button className="bg-[#FF9500] hover:bg-[#FF9500] text-black font-bold px-8 py-4 rounded-lg flex-1 text-lg">
+                <button className="bg-[#FF9500] hover:bg-orange-500 cursor-pointer text-black font-bold px-8 py-4 rounded-lg flex-1 text-lg"
+                  onClick={() => setOpenBooking(true)}>
                   Thuê ngay
                 </button>
-                <button className="bg-transparent border-2 border-[#FF9500] hover:bg-[#FF9500] hover:text-black text-[#FF9500] font-bold px-8 py-4 rounded-lg text-lg transition-colors">
+                <button className="bg-transparent border-2 border-[#FF9500] cursor-pointer hover:bg-[#FF9500] hover:text-black text-[#FF9500] font-bold px-8 py-4 rounded-lg text-lg transition-colors"
+                >
                   Lưu tin
                 </button>
               </div>
@@ -237,6 +241,13 @@ const ServiceDetailPage = () => {
           </div>
         </div>
       </div>
+
+
+      <CreateBookingModal
+        isOpen={openBooking}
+        onClose={() => setOpenBooking(false)}
+        service={service}
+      />
     </div>
   );
 };

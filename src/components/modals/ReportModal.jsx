@@ -8,7 +8,6 @@ const ReportModal = ({ isOpen, onClose, cameraman }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle report submission
     console.log('Report submitted:', { cameraman: cameraman?.id, content: reportText });
     onClose();
   };

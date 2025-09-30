@@ -381,8 +381,8 @@ const AdminDashboard = () => {
         </div>
         <div className="p-6">
           <Table
-            columns={userColumns.slice(0, 4)} // Show fewer columns for overview
-            dataSource={mockData.users.slice(0, 5)} // Show only 5 users
+            columns={userColumns.slice(0, 4)} 
+            dataSource={mockData.users.slice(0, 5)} 
             rowKey="id"
             pagination={false}
             size="small"

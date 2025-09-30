@@ -5,7 +5,6 @@ import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/module
 import Button from '../ui/Button';
 import { PORTFOLIO_DATA } from '../../data/constants';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -15,7 +14,6 @@ const PortfolioCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef(null);
 
-  // Custom navigation handlers
   const handlePrev = () => {
     if (swiperRef.current) {
       swiperRef.current.slidePrev();
@@ -28,7 +26,6 @@ const PortfolioCarousel = () => {
     }
   };
 
-  // Handle dot click
   const handleDotClick = (targetIndex) => {
     if (swiperRef.current) {
       swiperRef.current.slideTo(targetIndex);
@@ -88,7 +85,6 @@ const PortfolioCarousel = () => {
                 swiperRef.current = swiper;
               }}
               breakpoints={{
-                // Responsive breakpoints
                 320: {
                   slidesPerView: 1,
                   spaceBetween: 10,
@@ -176,11 +172,7 @@ const PortfolioCarousel = () => {
           </div>
         </div>
         
-        <div className="text-center mt-12">
-          <Button variant="primary" className="px-8 py-3 hover:scale-105 transition-transform">
-            Xem hồ sơ
-          </Button>
-        </div>
+        
       </div>
 
       <style jsx>{`

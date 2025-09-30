@@ -5,7 +5,6 @@ import whyChoose1 from "../../assets/images/sections/why_choose_1.png";
 import whyChoose2 from "../../assets/images/sections/why_choose_2.png";
 
 const WhyChooseSection = () => {
-  // Chia 2 cột cho đẹp (nếu FEATURES_DATA có 4 items)
   const leftCol = FEATURES_DATA.slice(0, 2);
   const rightCol = FEATURES_DATA.slice(2);
 

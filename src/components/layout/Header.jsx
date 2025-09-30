@@ -4,10 +4,12 @@ import { NAV_ITEMS } from "../../data/constants";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/horizontal_logo_with_text.png";
 import { useAuth } from "../../context/AuthContext";
+import { useNotifications } from "../../context/NotificationsContext";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
+  const { unreadCount } = useNotifications();
 
   const base =
     "text-sm font-semibold tracking-wide uppercase text-[#FF9500] transition-colors duration-200 hover:text-white";
@@ -66,13 +68,17 @@ const Header = () => {
                 <Send className="w-6 h-6" />
               </NavLink>
 
-              <NavLink
-                to="/notifications"
-                className="p-1 text-[#FF9500] hover:text-white transition-colors"
+              <NavLink to="/manage-account/notifications"
+                className="relative p-1 text-[#FF9500] hover:text-white transition-colors"
                 aria-label="Thông báo"
                 title="Thông báo"
               >
                 <Bell className="w-6 h-6" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-red-500 text-white text-[10px] leading-[18px] rounded-full text-center">
+                    {unreadCount > 99 ? "99+" : unreadCount}
+                  </span>
+                )}
               </NavLink>
 
               <Link
@@ -136,8 +142,7 @@ const Header = () => {
                 to={item.to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `${
-                    isActive ? active : base
+                  `${isActive ? active : base
                   } block py-2 px-2 rounded hover:bg-white/5 transition-colors duration-200`
                 }
               >
@@ -153,8 +158,7 @@ const Header = () => {
                       to="/login"
                       onClick={() => setOpen(false)}
                       className={({ isActive }) =>
-                        `${
-                          isActive ? active : base
+                        `${isActive ? active : base
                         } py-2 px-3 rounded hover:bg-white/5 transition-colors duration-200`
                       }
                     >
@@ -165,8 +169,7 @@ const Header = () => {
                       to="/register"
                       onClick={() => setOpen(false)}
                       className={({ isActive }) =>
-                        `${
-                          isActive ? active : base
+                        `${isActive ? active : base
                         } py-2 px-3 rounded hover:bg-white/5 transition-colors duration-200`
                       }
                     >
@@ -184,7 +187,7 @@ const Header = () => {
                       <Send className="w-6 h-6" />
                     </NavLink>
                     <NavLink
-                      to="/notifications"
+                      to="/manage-account/notifications"
                       onClick={() => setOpen(false)}
                       className="p-1 text-[#FF9500] hover:text-white transition-colors"
                       aria-label="Thông báo"

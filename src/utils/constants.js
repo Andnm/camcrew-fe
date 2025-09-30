@@ -10,13 +10,32 @@ import {
 export const ROLE_OPTIONS = {
     CUSTOMER: "customer",
     CAMERAMAN: "cameraman",
-    ADMIN: "admin"
+    ADMIN: "admin",
 };
+
+export const BOOKING_STATUS_OPTIONS = {
+    PAYING: "paying",
+    PAY_CANCELLED: "pay_cancelled",
+    REQUESTED: "requested",
+    COMPLETED: "completed",
+};
+
+export const BOOKING_STATUS_LABEL = [
+    { value: "paying", label: "Đang thanh toán" },
+    { value: "pay_cancelled", label: "Đã hủy thanh toán" },
+    { value: "requested", label: "Đã được yêu cầu" },
+    { value: "completed", label: "Đã hoàn thành" },
+];
 
 export const ROLE_OPTIONS_LABEL = [
     { value: "customer", label: "Khách hàng" },
     { value: "cameraman", label: "Thợ quay phim" },
 ];
+
+export const MEMBERSHIP_OPTIONS = {
+    ONE_MONTH: "1month",
+    SIX_MONTH: "6month",
+};
 
 export const membershipLabels = {
     normal: "Tài khoản thường",
@@ -34,7 +53,7 @@ export const customerSidebarItems = [{
         id: "bookings",
         icon: Calendar,
         label: "Lịch sử hoạt động",
-        to: "/manage-account/activities",
+        to: "/manage-account/activity-history",
     },
     {
         id: "messages",

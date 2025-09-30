@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Check, Star, Zap } from 'lucide-react';
+import { Check, Star, Zap, X } from 'lucide-react';
+import { upgradeMembershipSubscription } from '../../api/users';
+import { MEMBERSHIP_OPTIONS } from '../../utils/constants';
+import toast from 'react-hot-toast';
 
 const SubscriptionUpgradePage = () => {
-  const [selectedPlan, setSelectedPlan] = useState('6-month');
+  const [loadingPlanId, setLoadingPlanId] = useState(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmPlan, setConfirmPlan] = useState(null);
 
   const plans = [
     {
@@ -10,54 +15,77 @@ const SubscriptionUpgradePage = () => {
       name: 'Gói 1 tháng',
       price: 89000,
       period: '/THÁNG',
-      description: 'Dành cho freelancer mới muốn tăng khả năng nhận job, hiển thị hồ sơ và được gợi ý công việc ưu tiên theo ngân sách và phong cách cá nhân.',
+      description:
+        'Dành cho freelancer mới muốn tăng khả năng nhận job, hiển thị hồ sơ và được gợi ý công việc ưu tiên theo ngân sách và phong cách cá nhân.',
       features: [
         'Được boost hồ sơ 1 lần/tuần miễn phí',
         'Ứng tuyển job không giới hạn',
         'Gợi ý job thông minh theo lịch rảnh và phong cách quay',
-        'Gắn nhãn "Freelancer đã được xác minh"'
+        'Gắn nhãn "Freelancer đã được xác minh"',
       ],
       buttonText: 'Đăng ký ngay',
       buttonClass: 'bg-[#FF9500] hover:bg-orange-600 text-white',
-      cardClass: 'bg-gray-800 border-gray-700'
+      cardClass: 'bg-gray-800 border-gray-700',
+      membership_type: MEMBERSHIP_OPTIONS.ONE_MONTH,
     },
     {
       id: '6-month',
       name: 'Gói 6 tháng',
       price: 489000,
       period: '/6THÁNG',
-      description: 'Dành cho nhân sự chuyên nghiệp muốn đầu tư dài hạn và nâng cấp hồ sơ cá nhân, tăng cơ hội hợp tác với khách hàng tiềm năng.',
+      description:
+        'Dành cho nhân sự chuyên nghiệp muốn đầu tư dài hạn và nâng cấp hồ sơ cá nhân, tăng cơ hội hợp tác với khách hàng tiềm năng.',
       features: [
         'Boost hồ sơ 2 lần/tuần miễn phí',
         'Ứng tuyển job không giới hạn',
         'Ưu tiên duyệt hồ sơ nhanh hơn',
         'Gợi ý job thông minh theo lịch rảnh và phong cách quay',
-        'Gắn nhãn "Freelancer đã được xác minh"'
+        'Gắn nhãn "Freelancer đã được xác minh"',
       ],
       buttonText: 'Đăng ký ngay',
       buttonClass: 'bg-gray-800 hover:bg-gray-700 text-white',
       cardClass: 'bg-[#FF9500] border-orange-400',
-      popular: true
-    }
+      popular: true,
+      membership_type: MEMBERSHIP_OPTIONS.SIX_MONTH,
+    },
   ];
 
-  const handlePlanSelect = (planId) => {
-    setSelectedPlan(planId);
+  const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
+
+  const handleSubscribe = async (plan) => {
+    try {
+      setLoadingPlanId(plan.id);
+      const payload = {
+        membership_type: plan.membership_type,
+        amount: plan.price,
+      };
+      const res = await upgradeMembershipSubscription(payload);
+      console.log("res:", res)
+      if (res?.paymentUrl) {
+        window.location.href = res.paymentUrl;
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error(e?.message || 'Đã có lỗi xảy ra. Vui lòng thử lại sau');
+    } finally {
+      setLoadingPlanId(null);
+    }
   };
 
-  const handleSubscribe = (plan) => {
-    console.log('Subscribing to plan:', plan);
-    // Handle subscription logic here
+  const openConfirm = (plan) => {
+    setConfirmPlan(plan);
+    setConfirmOpen(true);
   };
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('vi-VN').format(price);
+  const confirmAndSubscribe = async () => {
+    const plan = confirmPlan;
+    setConfirmOpen(false);
+    if (plan) await handleSubscribe(plan);
   };
 
   return (
-    <div className="min-h-screen bg-black py-12">
+    <div className="min-h-screen bg-black">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">
             Nâng cấp tài khoản
@@ -67,14 +95,12 @@ const SubscriptionUpgradePage = () => {
           </h2>
         </div>
 
-        {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
           {plans.map((plan) => (
             <div
               key={plan.id}
               className={`${plan.cardClass} rounded-2xl p-8 border-2 transition-all duration-300 hover:scale-105 relative flex flex-col h-full`}
             >
-              {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <div className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
@@ -84,37 +110,57 @@ const SubscriptionUpgradePage = () => {
                 </div>
               )}
 
-              {/* Plan Header */}
               <div className="mb-6">
-                <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
+                <h3
+                  className={`text-xl font-bold mb-4 ${
+                    plan.popular ? 'text-black' : 'text-[#FF9500]'
+                  }`}
+                >
                   {plan.name}
                 </h3>
-                
+
                 <div className="flex items-baseline mb-4">
-                  <span className={`text-4xl md:text-5xl font-bold ${plan.popular ? 'text-black' : 'text-[#FF9500]'}`}>
+                  <span
+                    className={`text-4xl md:text-5xl font-bold ${
+                      plan.popular ? 'text-black' : 'text-[#FF9500]'
+                    }`}
+                  >
                     {formatPrice(plan.price)}đ
                   </span>
-                  <span className={`text-lg ml-1 ${plan.popular ? 'text-gray-800' : 'text-gray-400'}`}>
+                  <span
+                    className={`text-lg ml-1 ${
+                      plan.popular ? 'text-gray-800' : 'text-gray-400'
+                    }`}
+                  >
                     {plan.period}
                   </span>
                 </div>
 
-                <p className={`text-sm leading-relaxed ${plan.popular ? 'text-gray-800' : 'text-gray-300'}`}>
+                <p
+                  className={`text-sm leading-relaxed ${
+                    plan.popular ? 'text-gray-800' : 'text-gray-300'
+                  }`}
+                >
                   {plan.description}
                 </p>
               </div>
 
-              {/* Features List */}
               <div className="mb-8 flex-1">
                 <ul className="space-y-3">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
-                        plan.popular ? 'bg-black' : 'bg-[#FF9500]'
-                      }`}>
-                        <Check className={`w-3 h-3 ${plan.popular ? 'text-white' : 'text-white'}`} />
+                      <div
+                        className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
+                          plan.popular ? 'bg-black' : 'bg-[#FF9500]'
+                        }`}
+                      >
+                        <Check className="w-3 h-3 text-white" />
                       </div>
-                      <span className={`text-sm ${plan.popular ? 'text-gray-800' : 'text-gray-300'}`}>
+                      <span
+                        className={`text-sm ${
+                          plan.popular ? 'text-gray-800' : 'text-gray-300'
+                        }`}
+                      >
                         {feature}
                       </span>
                     </li>
@@ -122,26 +168,25 @@ const SubscriptionUpgradePage = () => {
                 </ul>
               </div>
 
-              {/* Subscribe Button */}
               <div className="mt-auto">
                 <button
-                  onClick={() => handleSubscribe(plan)}
-                  className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 ${plan.buttonClass}`}
+                  onClick={() => openConfirm(plan)}
+                  disabled={loadingPlanId === plan.id}
+                  className={`w-full py-4 px-6 rounded-xl cursor-pointer font-bold text-lg transition-all duration-200 ${plan.buttonClass} disabled:opacity-60`}
                 >
-                  {plan.buttonText}
+                  {loadingPlanId === plan.id ? 'Đang xử lý...' : plan.buttonText}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Additional Benefits Section */}
         <div className="mt-16 text-center">
           <div className="bg-gray-800 rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-white text-2xl font-bold mb-6">
               Tại sao nên nâng cấp tài khoản?
             </h3>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 bg-[#FF9500] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -176,13 +221,12 @@ const SubscriptionUpgradePage = () => {
           </div>
         </div>
 
-        {/* FAQ Section */}
         <div className="mt-16">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-white text-2xl font-bold text-center mb-8">
               Câu hỏi thường gặp
             </h3>
-            
+
             <div className="space-y-4">
               <div className="bg-gray-800 rounded-lg p-6">
                 <h4 className="text-white font-semibold mb-2">
@@ -214,6 +258,44 @@ const SubscriptionUpgradePage = () => {
           </div>
         </div>
       </div>
+
+      {confirmOpen && confirmPlan && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-gray-800 w-full max-w-md rounded-xl overflow-hidden">
+            <div className="flex items-center justify-between p-5 border-b border-gray-700">
+              <h3 className="text-white text-lg font-semibold">Xác nhận nâng cấp</h3>
+              <button onClick={() => setConfirmOpen(false)} className="text-gray-400 hover:text-white">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-5 space-y-3">
+              <p className="text-gray-300">
+                Bạn chắc chắn muốn đăng ký <span className="font-semibold text-white">{confirmPlan.name}</span> với giá{' '}
+                <span className="text-[#FF9500] font-semibold">{formatPrice(confirmPlan.price)}đ</span>?
+              </p>
+              <p className="text-gray-400 text-sm">
+                Sau khi xác nhận, bạn sẽ được chuyển đến trang thanh toán để hoàn tất.
+              </p>
+            </div>
+
+            <div className="p-5 pt-0 flex gap-3">
+              <button
+                onClick={() => setConfirmOpen(false)}
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2.5 rounded-lg"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={confirmAndSubscribe}
+                className="flex-1 bg-[#FF9500] hover:bg-orange-600 text-black font-semibold py-2.5 rounded-lg"
+              >
+                Xác nhận & Thanh toán
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

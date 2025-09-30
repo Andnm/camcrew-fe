@@ -68,7 +68,6 @@ const BookingManagementPage = () => {
 
   const handleBookingAction = (booking, action) => {
     console.log(`${action} booking:`, booking.id);
-    // Handle booking actions
   };
 
   const filteredBookings = bookings.filter(booking => {

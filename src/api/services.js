@@ -44,3 +44,13 @@ export async function createNewService(payload) {
     const res = await api.post("/services", payload);
     return res.data;
 }
+
+export async function approveService(id) {
+    const res = await api.patch(`/services/${id}/approve`);
+    return res.data;
+}
+
+export async function rejectService(id, reason) {
+    const res = await api.patch(`/services/${id}/reject`, reason);
+    return res.data;
+}

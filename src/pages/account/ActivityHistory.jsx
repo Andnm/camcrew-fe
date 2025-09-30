@@ -229,15 +229,15 @@ export default function ActivityHistory() {
 
               <div className="text-right ml-4">
                 <span
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium ${service.status === "active"
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium ${service.status === "approved"
                     ? "bg-green-600 text-white"
                     : service.status === "pending"
                       ? "bg-yellow-600 text-white"
                       : "bg-red-600 text-white"
                     }`}
                 >
-                  {service.status === "active"
-                    ? "Đang hoạt động"
+                  {service.status === "approved"
+                    ? "Đang được chấp thuận"
                     : service.status === "pending"
                       ? "Chờ duyệt"
                       : "Bị từ chối"}

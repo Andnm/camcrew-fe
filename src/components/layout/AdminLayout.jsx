@@ -46,7 +46,6 @@ const AdminLayout = () => {
       icon: Camera,
       path: "/admin/services",
       active: location.pathname === "/admin/services",
-      badge: "23",
     },
     {
       id: "bookings",
@@ -61,7 +60,6 @@ const AdminLayout = () => {
       icon: AlertTriangle,
       path: "/admin/reports",
       active: location.pathname === "/admin/reports",
-      badge: "5",
     },
     {
       id: "analytics",
@@ -69,13 +67,6 @@ const AdminLayout = () => {
       icon: BarChart3,
       path: "/admin/analytics",
       active: location.pathname === "/admin/analytics",
-    },
-    {
-      id: "revenue",
-      label: "Doanh thu",
-      icon: DollarSign,
-      path: "/admin/revenue",
-      active: location.pathname === "/admin/revenue",
     },
     {
       id: "messages",
@@ -87,13 +78,7 @@ const AdminLayout = () => {
   ];
 
   const bottomMenuItems = [
-    {
-      id: "settings",
-      label: "Cài đặt hệ thống",
-      icon: Settings,
-      path: "/admin/settings",
-      active: location.pathname === "/admin/settings",
-    },
+    
   ];
 
   const handleLogout = () => {
@@ -149,7 +134,7 @@ const AdminLayout = () => {
               <li key={item.id}>
                 <button
                   onClick={() => navigate(item.path)}
-                  className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors group ${
+                  className={`w-full cursor-pointer flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors group ${
                     item.active
                       ? "bg-[#FF9500] text-white"
                       : "text-gray-300 hover:bg-gray-800 hover:text-white"

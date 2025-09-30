@@ -133,23 +133,27 @@ const ServiceDetailPage = () => {
                 </div>
               </div>
 
-              {service.video_demo_urls && service.video_demo_urls.length > 0 && (
+              {Array.isArray(service.video_demo_urls) && service.video_demo_urls.length > 0 && (
                 <div>
-                  <h3 className="text-white text-xl font-bold mb-4 border-l-4 border-[#FF9500] pl-3">Demo video thực tế</h3>
-                  <div className="relative bg-gray-700 rounded-lg overflow-hidden h-96">
-                    <img
-                      src={service.video_demo_urls[0] || "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=400&fit=crop"}
-                      alt="Wedding demo video"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                      <div className="bg-[#FF9500] rounded-full p-5 cursor-pointer hover:bg-[#FF9500] transition-colors">
-                        <Play className="w-10 h-10 text-white fill-white" />
+                  <h3 className="text-white text-xl font-bold mb-4 border-l-4 border-[#FF9500] pl-3">
+                    Demo video thực tế
+                  </h3>
+
+                  <div className="gap-4">
+                    {service.video_demo_urls.map((url, idx) => (
+                      <div key={idx} className="relative bg-gray-700 rounded-lg overflow-hidden">
+                        <video
+                          src={url}
+                          className="w-full object-cover"
+                          controls
+                          preload="metadata"
+                        />
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               )}
+
             </div>
           </div>
 

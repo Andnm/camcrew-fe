@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AlertTriangle, Eye, CheckCircle, XCircle, Clock, User, MessageCircle, Search, Filter, Download } from 'lucide-react';
 import { Table, Button, Badge, Modal, Input, Select, Tag, Tooltip } from 'antd';
-import Header from '../../components/layout/Header';
 
 const AdminReportsPage = () => {
   const [selectedReport, setSelectedReport] = useState(null);
@@ -275,7 +274,6 @@ const AdminReportsPage = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <Header />
       
       <div className="max-w-7xl mx-auto p-6">
         <div className="mb-8">

@@ -32,10 +32,14 @@ const NotificationsPage = lazy(() => import("./pages/NotificationsPage"));
 
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
+const AdminUsersPage = lazy(() => import("./pages/admin/AdminUsersPage"));
 const AdminServicesPage = lazy(() => import("./pages/admin/AdminServicesPage"));
 const AdminBookingsPage = lazy(() => import("./pages/admin/AdminBookingsPage"));
 const AdminAnalyticsPage = lazy(() =>
   import("./pages/admin/AdminAnalyticsPage")
+);
+const AdminChatPage = lazy(() =>
+  import("./pages/admin/AdminChatPage")
 );
 
 const BookingManagementPage = lazy(() =>
@@ -226,6 +230,22 @@ export default function App() {
                 element={
                   <AdminRoute>
                     <AdminServicesPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/users"
+                element={
+                  <AdminRoute>
+                    <AdminUsersPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/messages"
+                element={
+                  <AdminRoute>
+                    <AdminChatPage />
                   </AdminRoute>
                 }
               />

@@ -62,13 +62,6 @@ const AdminLayout = () => {
       active: location.pathname === "/admin/reports",
     },
     {
-      id: "analytics",
-      label: "Phân tích dữ liệu",
-      icon: BarChart3,
-      path: "/admin/analytics",
-      active: location.pathname === "/admin/analytics",
-    },
-    {
       id: "messages",
       label: "Tin nhắn hỗ trợ",
       icon: MessageCircle,

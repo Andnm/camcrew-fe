@@ -34,9 +34,7 @@ const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
 const AdminUsersPage = lazy(() => import("./pages/admin/AdminUsersPage"));
 const AdminServicesPage = lazy(() => import("./pages/admin/AdminServicesPage"));
 const AdminBookingsPage = lazy(() => import("./pages/admin/AdminBookingsPage"));
-const AdminAnalyticsPage = lazy(() =>
-  import("./pages/admin/AdminAnalyticsPage")
-);
+
 const AdminChatPage = lazy(() =>
   import("./pages/admin/AdminChatPage")
 );
@@ -257,14 +255,7 @@ export default function App() {
                     </AdminRoute>
                   }
                 />
-                <Route
-                  path="/admin/analytics"
-                  element={
-                    <AdminRoute>
-                      <AdminAnalyticsPage />
-                    </AdminRoute>
-                  }
-                />
+               
               </Route>
             </Routes>
           </Suspense>

@@ -29,6 +29,7 @@ const Messages = lazy(() => import("./pages/account/Messages"));
 const ActivityHistory = lazy(() => import("./pages/account/ActivityHistory"));
 const SubscriptionUpgrade = lazy(() => import("./pages/account/SubscriptionUpgrade"));
 const CameramanProfilePage = lazy(() => import("./pages/CameramanProfilePage"));
+const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
 
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
@@ -137,6 +138,7 @@ export default function App() {
                 <Route path="/verify&upn=:token" element={<VerifyPage />} />
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 <Route path="/cameraman/:id" element={<CameramanProfilePage />} />
+                <Route path="/about-us" element={<AboutUsPage />} />
 
                 <Route
                   path="/manage-account"

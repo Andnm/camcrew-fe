@@ -215,7 +215,7 @@ const ForgotPasswordPage = () => {
         <div className="bg-black rounded-lg p-8 w-full max-w-md">
           <div className="text-center mb-8">
             <img
-              src="assets/images/logo/logo_square.png"
+              src={horizontal_logo}
               alt="CamCrew"
               className="w-12 h-12 mx-auto mb-4"
             />

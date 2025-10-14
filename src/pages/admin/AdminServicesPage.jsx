@@ -281,10 +281,6 @@ export default function AdminServicesPage() {
   return (
     <div className="p-6 bg-white min-h-screen">
       <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-black">Quản lý dịch vụ</h1>
-          <p className="text-black text-sm mt-1">Quản lý và điều hành hệ thống CamCrew</p>
-        </div>
         <div className="flex items-center gap-3">
           <Select
             value={statusFilter}

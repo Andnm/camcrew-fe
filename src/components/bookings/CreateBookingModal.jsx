@@ -30,7 +30,6 @@ const CreateBookingModal = ({ isOpen, onClose, service }) => {
     try {
       setSubmitting(true);
       const res = await createNewBooking(payload);
-      console.log("res: ", res)
       if (res?.paymentUrl) {
         window.location.href = res.paymentUrl;
       }

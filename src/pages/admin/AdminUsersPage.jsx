@@ -139,7 +139,7 @@ export default function AdminUsersPage() {
       toast.success("Đã nâng cấp tài khoản lên thợ quay phim");
       loadData();
     } catch (e){
-      toast.error(e?.data?.response?.message || "Nâng cấp thất bại");
+      toast.error(e?.data?.response?.message  || e?.message || "Nâng cấp thất bại");
     }
   };
 
@@ -296,12 +296,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="p-6 bg-white min-h-screen">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-black">Quản lý người dùng</h1>
-          <p className="text-black text-sm mt-1">Gộp người dùng & thợ quay, có thể nâng cấp vai trò</p>
-        </div>
-      </div>
+  
 
       <div className="mb-4">
         <Space wrap>

@@ -16,3 +16,8 @@ export async function createNewReviews(payload) {
     const res = await api.post("/reviews", payload);
     return res.data;
 }
+
+export async function getReviewsByCameramanId(cameraman_id) {
+  const res = await api.get(`/reviews/cameraman/${cameraman_id}`);
+  return res.data;
+}

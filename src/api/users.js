@@ -5,6 +5,11 @@ export async function getMe() {
   return res.data;
 }
 
+export async function getProfileById(user_id) {
+  const res = await api.get(`/users/${user_id}`);
+  return res.data;
+}
+
 export async function listUserByAdmin(opts = {}) {
   const { page = 1, limit = 10 } = opts;
 

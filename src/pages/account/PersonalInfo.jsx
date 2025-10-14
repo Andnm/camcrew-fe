@@ -55,7 +55,8 @@ export default function PersonalInfo() {
       toast.success("Cập nhật hồ sơ thành công!");
       setIsEditing(false);
     } catch (e) {
-      toast.error(e?.response?.data?.message || "Cập nhật thất bại, vui lòng thử lại.");
+      console.log("e: ", e)
+      toast.error(e?.response?.data?.message || e?.message || "Cập nhật thất bại, vui lòng thử lại.");
     } finally {
       setSaving(false);
     }
@@ -127,8 +128,7 @@ export default function PersonalInfo() {
             name="phone_number"
             value={formData.phone_number}
             onChange={onChange}
-            disabled
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white opacity-70"
+            className={`w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white `}
           />
         </div>
 

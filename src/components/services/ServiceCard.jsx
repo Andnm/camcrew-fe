@@ -13,8 +13,6 @@ const ServiceCard = ({ service }) => {
     avatar_url: service.cameraman_id.avatar_url,
     avg_rating: service.cameraman_id.avg_rating
   };
-  console.log("service: ", service)
-  console.log("cameraman: ", cameraman)
 
   const handleClick = () => {
     navigate(`/services/${service._id}`);

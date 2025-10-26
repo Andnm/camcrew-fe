@@ -11,6 +11,17 @@ export function getMembershipLabel(value) {
     return membershipLabels[value] || "Không xác định";
 }
 
+export const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString("vi-VN");
+};
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 export const notSupportFunction = () => {
     toast.error("Chức năng này đang được phát triển!");
 };

@@ -15,6 +15,7 @@ import {
   MessageCircle,
   Calendar,
   Shield,
+  File,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -60,6 +61,13 @@ const AdminLayout = () => {
       icon: AlertTriangle,
       path: "/admin/reports",
       active: location.pathname === "/admin/reports",
+    },
+    {
+      id: "blogs",
+      label: "Quản lý blog",
+      icon: File,
+      path: "/admin/blogs",
+      active: location.pathname === "/admin/blogs",
     },
     {
       id: "messages",

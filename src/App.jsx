@@ -22,12 +22,15 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const VerifyPage = lazy(() => import("./pages/VerifyPage"));
 const ForgotPasswordPage = lazy(() => import("./pages/ForgotPasswordPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogDetailPage = lazy(() => import("./pages/BlogDetailPage"));
 const PersonalInfo = lazy(() => import("./pages/account/PersonalInfo"));
 const Notifications = lazy(() => import("./pages/account/Notifications"));
 const MyRentals = lazy(() => import("./pages/account/MyRentals"));
 const Messages = lazy(() => import("./pages/account/Messages"));
 const ActivityHistory = lazy(() => import("./pages/account/ActivityHistory"));
-const SubscriptionUpgrade = lazy(() => import("./pages/account/SubscriptionUpgrade"));
+const SubscriptionUpgrade = lazy(() =>
+  import("./pages/account/SubscriptionUpgrade")
+);
 const CameramanProfilePage = lazy(() => import("./pages/CameramanProfilePage"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage"));
 
@@ -36,10 +39,9 @@ const AdminReportsPage = lazy(() => import("./pages/admin/AdminReportsPage"));
 const AdminUsersPage = lazy(() => import("./pages/admin/AdminUsersPage"));
 const AdminServicesPage = lazy(() => import("./pages/admin/AdminServicesPage"));
 const AdminBookingsPage = lazy(() => import("./pages/admin/AdminBookingsPage"));
+const AdminBlogsPage = lazy(() => import("./pages/admin/AdminBlogsPage"));
 
-const AdminChatPage = lazy(() =>
-  import("./pages/admin/AdminChatPage")
-);
+const AdminChatPage = lazy(() => import("./pages/admin/AdminChatPage"));
 
 const BookingManagementPage = lazy(() =>
   import("./pages/BookingManagementPage")
@@ -124,20 +126,29 @@ export default function App() {
         <BrowserRouter>
           <Toaster position="top-right" />
           <ScrollToTop />
-          <Suspense fallback={<div className="text-white p-6">Đang tải...</div>}>
+          <Suspense
+            fallback={<div className="text-white p-6">Đang tải...</div>}
+          >
             <Routes>
               <Route element={<AppLayout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/services/:id" element={<ServiceDetailPage />} />
                 <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:id" element={<BlogDetailPage />} />
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/verify" element={<VerifyPage />} />
                 <Route path="/verify&upn=:token" element={<VerifyPage />} />
-                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-                <Route path="/cameraman/:id" element={<CameramanProfilePage />} />
+                <Route
+                  path="/forgot-password"
+                  element={<ForgotPasswordPage />}
+                />
+                <Route
+                  path="/cameraman/:id"
+                  element={<CameramanProfilePage />}
+                />
                 <Route path="/about-us" element={<AboutUsPage />} />
 
                 <Route
@@ -150,13 +161,15 @@ export default function App() {
                 >
                   <Route index element={<PersonalInfo />} />
                   <Route path="personal" element={<PersonalInfo />} />
-                  <Route path="activity-history" element={<ActivityHistory />} />
+                  <Route
+                    path="activity-history"
+                    element={<ActivityHistory />}
+                  />
                   <Route path="messages" element={<Messages />} />
                   <Route path="notifications" element={<Notifications />} />
                   <Route path="my-rentals" element={<MyRentals />} />
                   <Route path="upgrade" element={<SubscriptionUpgrade />} />
                 </Route>
-
 
                 <Route
                   path="/booking-management"
@@ -236,6 +249,14 @@ export default function App() {
                   }
                 />
                 <Route
+                  path="/admin/blogs"
+                  element={
+                    <AdminRoute>
+                      <AdminBlogsPage />
+                    </AdminRoute>
+                  }
+                />
+                <Route
                   path="/admin/messages"
                   element={
                     <AdminRoute>
@@ -259,13 +280,11 @@ export default function App() {
                     </AdminRoute>
                   }
                 />
-               
               </Route>
             </Routes>
           </Suspense>
         </BrowserRouter>
       </NotificationsProvider>
-
     </AuthProvider>
   );
 }

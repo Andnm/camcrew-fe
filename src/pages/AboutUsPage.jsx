@@ -1,7 +1,34 @@
 import React from 'react';
 import { Camera, Users, Award, Target, Heart, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const AboutUsPage = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const ROUTES = {
+    postJobSuccess: "/manage-account/activity-history",
+    becomeCameraman: "/register",
+  };
+
+  const handlePostJob = () => {
+    if (!user) {
+      toast.error("Vui lòng đăng nhập tài khoản Cameraman trước khi đăng job.");
+      return;
+    }
+    if (user?.role_name?.toLowerCase() !== "cameraman") {
+      toast.error("Chỉ Cameraman mới có thể đăng job.");
+      return;
+    }
+    navigate(ROUTES.postJobSuccess);
+  };
+
+  const handleBecomeCameraman = () => {
+    navigate(ROUTES.becomeCameraman);
+  };
+
   const stats = [
     { number: '500+', label: 'Dự án hoàn thành' },
     { number: '200+', label: 'Thợ quay chuyên nghiệp' },
@@ -64,8 +91,8 @@ const AboutUsPage = () => {
               VỀ <span className="text-[#FF9500]">CAMCREW</span>
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Nền tảng kết nối khách hàng với thợ quay phim chuyên nghiệp, 
-              mang đến giải pháp tìm kiếm và thuê dịch vụ quay phim nhanh chóng, 
+              Nền tảng kết nối khách hàng với thợ quay phim chuyên nghiệp,
+              mang đến giải pháp tìm kiếm và thuê dịch vụ quay phim nhanh chóng,
               minh bạch và đáng tin cậy.
             </p>
           </div>
@@ -100,20 +127,20 @@ const AboutUsPage = () => {
               </h2>
               <div className="w-20 h-1 bg-[#FF9500] mx-auto mb-8"></div>
             </div>
-            
+
             <div className="bg-gradient-to-br from-orange-50 to-white p-8 md:p-12 rounded-2xl shadow-lg">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                CamCrew ra đời với sứ mệnh <span className="font-semibold text-[#FF9500]">cách mạng hóa</span> cách 
-                mọi người tìm kiếm và thuê dịch vụ quay phim. Chúng tôi tin rằng mỗi dự án đều xứng đáng có được 
+                CamCrew ra đời với sứ mệnh <span className="font-semibold text-[#FF9500]">cách mạng hóa</span> cách
+                mọi người tìm kiếm và thuê dịch vụ quay phim. Chúng tôi tin rằng mỗi dự án đều xứng đáng có được
                 người thực hiện tốt nhất, và mỗi thợ quay tài năng đều xứng đáng có cơ hội tỏa sáng.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Thông qua công nghệ <span className="font-semibold">AI matching thông minh</span> và quy trình 
-                kiểm duyệt chặt chẽ, chúng tôi tạo ra một không gian minh bạch, an toàn và hiệu quả cho cả 
+                Thông qua công nghệ <span className="font-semibold">AI matching thông minh</span> và quy trình
+                kiểm duyệt chặt chẽ, chúng tôi tạo ra một không gian minh bạch, an toàn và hiệu quả cho cả
                 khách hàng lẫn thợ quay.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Hơn cả một nền tảng, CamCrew là <span className="font-semibold text-[#FF9500]">cộng đồng kết nối</span> những 
+                Hơn cả một nền tảng, CamCrew là <span className="font-semibold text-[#FF9500]">cộng đồng kết nối</span> những
                 người đam mê sáng tạo nội dung video, nơi ước mơ và cơ hội gặp nhau.
               </p>
             </div>
@@ -137,8 +164,8 @@ const AboutUsPage = () => {
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="bg-gray-900 p-8 rounded-xl hover:bg-gray-800 transition-colors"
                 >
                   <div className="w-14 h-14 bg-[#FF9500] rounded-lg flex items-center justify-center mb-6">
@@ -171,8 +198,8 @@ const AboutUsPage = () => {
             {team.map((member, index) => (
               <div key={index} className="text-center group">
                 <div className="relative mb-6 overflow-hidden rounded-2xl">
-                  <img 
-                    src={member.image} 
+                  <img
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
@@ -197,10 +224,17 @@ const AboutUsPage = () => {
             Tham gia cộng đồng của chúng tôi ngay hôm nay
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-[#FF9500] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+            <button
+              onClick={handlePostJob}
+              className="cursor-pointer bg-white text-[#FF9500] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
+            >
               Đăng job ngay →
             </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors">
+
+            <button
+              onClick={handleBecomeCameraman}
+              className="cursor-pointer border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors"
+            >
               Trở thành thợ quay →
             </button>
           </div>

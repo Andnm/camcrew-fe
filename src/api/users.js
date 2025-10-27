@@ -57,3 +57,8 @@ export async function upRoleCameraman(user_id) {
   const res = await api.post(`/users/up-role-cameraman/${user_id}`);
   return res.data;
 }
+
+export async function updateUserProfileByAdmin(user_id, payload) {
+  const res = await api.put(`/users/admin/${user_id}`, payload);
+  return res.data;
+}

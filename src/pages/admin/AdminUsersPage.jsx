@@ -14,7 +14,7 @@ import {
   Dropdown,
 } from "antd";
 import { Eye, User as UserIcon, CheckCircle, XCircle, Search as SearchIcon, ArrowUpRight, MoreHorizontal } from "lucide-react";
-import { listUserByAdmin, listCameramanByAdmin, upRoleCameraman } from "../../api/users";
+import { listUserByAdmin, listCameramanByAdmin, upRoleCameraman, updateUserProfileByAdmin } from "../../api/users";
 import { getMembershipLabel } from "../../utils/helper";
 import { ROLE_OPTIONS_LABEL } from "../../utils/constants";
 import toast from "react-hot-toast";
@@ -138,8 +138,21 @@ export default function AdminUsersPage() {
       await upRoleCameraman(id);
       toast.success("Đã nâng cấp tài khoản lên thợ quay phim");
       loadData();
-    } catch (e){
-      toast.error(e?.data?.response?.message  || e?.message || "Nâng cấp thất bại");
+    } catch (e) {
+      toast.error(e?.data?.response?.message || e?.message || "Nâng cấp thất bại");
+    }
+  };
+
+  const handleManualVerify = async (id) => {
+    try {
+      setLoading(true);
+      await updateUserProfileByAdmin(id, { is_verified: true });
+      toast.success("Đã xác thực thủ công tài khoản");
+      await loadData();
+    } catch (e) {
+      toast.error(e?.data?.response?.message || e?.message || "Xác thực thủ công thất bại");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -271,6 +284,25 @@ export default function AdminUsersPage() {
       },
     ];
 
+    if (!record?.is_verified) {
+      items.push({
+        key: "manual-verify",
+        label: (
+          <Popconfirm
+            title="Xác thực thủ công tài khoản này?"
+            okText="Xác nhận"
+            cancelText="Hủy"
+            onConfirm={() => handleManualVerify(record._id)}
+          >
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600" />
+              <span>Xác thực thủ công</span>
+            </div>
+          </Popconfirm>
+        ),
+      });
+    }
+
     if (record.role_name === "customer") {
       items.push({
         key: "upgrade",
@@ -296,7 +328,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="p-6 bg-white min-h-screen">
-  
+
 
       <div className="mb-4">
         <Space wrap>

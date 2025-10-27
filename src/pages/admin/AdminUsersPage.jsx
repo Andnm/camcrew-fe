@@ -363,7 +363,7 @@ export default function AdminUsersPage() {
             style={{ width: 170 }}
             onChange={setVerifiedFilter}
             options={[
-              { value: "all", label: "Xác thực (tất cả)" },
+              { value: "all", label: "Tất cả" },
               { value: "true", label: "Đã xác thực" },
               { value: "false", label: "Chưa xác thực" },
             ]}

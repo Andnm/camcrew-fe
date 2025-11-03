@@ -1,13 +1,20 @@
 import { X, Calendar } from "lucide-react";
 import React, { useMemo, useState } from "react";
 import { SERVICE_TIME_OF_DAYS } from "../../utils/constants";
-import { createNewBooking } from "../../api/bookings"; 
+import { createNewBooking } from "../../api/bookings";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
+import { createConversation } from "../../api/conversations";
 
 const CreateBookingModal = ({ isOpen, onClose, service }) => {
+  console.log("service: ", service);
   const [scheduledDate, setScheduledDate] = useState("");
   const [timeOfDay, setTimeOfDay] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  const { user } = useAuth();
+
+  console.log("user: ", user);
 
   const timeOptions = useMemo(() => {
     const allowed = service?.time_of_day || [];
@@ -23,19 +30,36 @@ const CreateBookingModal = ({ isOpen, onClose, service }) => {
     const payload = {
       cameraman_id: service?.cameraman_id?._id,
       service_id: service?._id,
-      scheduled_date: scheduledDate, 
+      scheduled_date: scheduledDate,
       time_of_day: timeOfDay,
     };
 
     try {
       setSubmitting(true);
+
+      const customerInfo = {
+        userId: user?._id,
+        fullName: user?.full_name,
+        email: user?.email,
+        avatarUrl: user?.avatar_url || "",
+      };
+
+      const cameramanInfo = {
+        userId: service?.cameraman_id?._id,
+        fullName: service?.cameraman_id?.full_name,
+        email: service?.cameraman_id?.email,
+        avatarUrl: service?.cameraman_id?.avatar_url || "",
+      };
+
+      await createConversation(customerInfo, cameramanInfo);
+
       const res = await createNewBooking(payload);
       if (res?.paymentUrl) {
         window.location.href = res.paymentUrl;
       }
     } catch (err) {
       console.error(err);
-      toast.error(err?.message || "Đặt lịch thất bại, vui lòng thủ lại!")
+      toast.error(err?.message || "Đặt lịch thất bại, vui lòng thủ lại!");
     } finally {
       setSubmitting(false);
     }

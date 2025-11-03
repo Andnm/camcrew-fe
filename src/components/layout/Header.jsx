@@ -60,7 +60,7 @@ const Header = () => {
           ) : (
             <>
               <NavLink
-                to="/chat-messages"
+                to="/manage-account/messages"
                 className="p-1 text-[#FF9500] hover:text-white transition-colors"
                 aria-label="Tin nhắn"
                 title="Tin nhắn"
@@ -179,7 +179,7 @@ const Header = () => {
                 ) : (
                   <div className="flex items-center gap-4">
                     <NavLink
-                      to="/chat-messages"
+                      to="/manage-account/messages"
                       onClick={() => setOpen(false)}
                       className="p-1 text-[#FF9500] hover:text-white transition-colors"
                       aria-label="Tin nhắn"

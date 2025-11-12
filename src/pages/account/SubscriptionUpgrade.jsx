@@ -60,7 +60,6 @@ const SubscriptionUpgradePage = () => {
         amount: plan.price,
       };
       const res = await upgradeMembershipSubscription(payload);
-      console.log("res:", res)
       if (res?.paymentUrl) {
         window.location.href = res.paymentUrl;
       }

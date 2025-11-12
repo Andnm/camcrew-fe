@@ -5,6 +5,7 @@ import { listBookings, completedBooking } from "../../api/bookings";
 import { getDetailServiceById } from "../../api/services";
 import { BOOKING_STATUS_OPTIONS, SERVICE_AREAS } from "../../utils/constants";
 import { getCategoryLabel, getStyleLabel, getTimeOfDay } from "../../utils/helper";
+import toast from "react-hot-toast";
 
 function startOfWeekSunday(d) {
   const dt = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -51,7 +52,6 @@ export default function MyRentals() {
         limit: 100,
       });
 
-      console.log("res: ", res)
       setBookings(res?.data || []);
     } finally {
       setLoading(false);
@@ -118,7 +118,7 @@ export default function MyRentals() {
         )
       );
     } catch (error) {
-      message.error("Không thể hoàn thành booking. Vui lòng thử lại!");
+      toast.error(error?.message || "Không thể hoàn thành booking. Vui lòng thử lại!");
       console.error("Complete booking error:", error);
     }
   };

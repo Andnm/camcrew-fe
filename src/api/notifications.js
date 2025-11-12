@@ -5,7 +5,7 @@ export async function listNotifications(opts = {}) {
 
     const params = { page, limit };
     if (type) params.type = type;
-    if (isRead) params.isRead = isRead;
+    if (isRead !== undefined) params.isRead = isRead;
 
     const res = await api.get("/notifications", { params });
     return res.data;

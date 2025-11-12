@@ -15,7 +15,8 @@ export function NotificationsProvider({ children }) {
       return;
     }
     try {
-      const res = await listNotifications({ page: 1, limit: 1, isRead: false });
+      const res = await listNotifications({ page: 1, limit: 10, isRead: false });
+      console.log("res noti: ", res)
       setUnreadCount(res?.pagination?.totalResults || 0);
     } catch(e) {
         console.log(e);

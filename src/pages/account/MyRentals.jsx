@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
-import { listBookings } from "../../api/bookings";
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import { Calendar, ChevronLeft, ChevronRight, CheckCircle, CalendarCheck } from "lucide-react";
+import { Popconfirm, message } from "antd";
+import { listBookings, completedBooking } from "../../api/bookings";
 import { getDetailServiceById } from "../../api/services";
 import { BOOKING_STATUS_OPTIONS, SERVICE_AREAS } from "../../utils/constants";
 import { getCategoryLabel, getStyleLabel, getTimeOfDay } from "../../utils/helper";
@@ -33,8 +34,8 @@ export default function MyRentals() {
   const [loading, setLoading] = useState(false);
   const [bookings, setBookings] = useState([]);
   const [serviceMap, setServiceMap] = useState({});
-  const [pagination, setPagination] = useState({ page: 1, limit: 10, total: 0 });
-  const totalPages = Math.ceil(pagination.total / pagination.limit);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const datePickerRef = useRef(null);
 
   const weekStart = useMemo(() => startOfWeekSunday(anchorDate), [anchorDate]);
   const weekDays = useMemo(
@@ -42,29 +43,23 @@ export default function MyRentals() {
     [weekStart]
   );
 
-  const fetchBookings = async (page = pagination.page) => {
+  const fetchBookings = async () => {
     setLoading(true);
     try {
       const res = await listBookings({
-        page,
-        limit: pagination.limit,
-        status: BOOKING_STATUS_OPTIONS.REQUESTED,
+        page: 1,
+        limit: 100,
       });
+
+      console.log("res: ", res)
       setBookings(res?.data || []);
-      setPagination((p) => ({
-        ...p,
-        page: res?.pagination?.pageIndex || page,
-        limit: res?.pagination?.pageSize || p.limit,
-        total: res?.pagination?.totalResults || 0,
-      }));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchBookings(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchBookings();
   }, []);
 
   useEffect(() => {
@@ -107,13 +102,77 @@ export default function MyRentals() {
     if (selectedDate < next || selectedDate >= addDays(next, 7)) setSelectedDate(next);
   };
 
-  const handlePageChange = async (next) => {
-    if (next < 1 || next > totalPages) return;
-    await fetchBookings(next);
+  const handleDatePickerSelect = (date) => {
+    setSelectedDate(date);
+    setAnchorDate(date);
+    setShowDatePicker(false);
   };
+
+  const handleCompleteBooking = async (bookingId) => {
+    try {
+      await completedBooking(bookingId);
+      message.success("Đã đánh dấu hoàn thành booking!");
+      setBookings((prev) =>
+        prev.map((bk) =>
+          bk._id === bookingId ? { ...bk, status: BOOKING_STATUS_OPTIONS.COMPLETED } : bk
+        )
+      );
+    } catch (error) {
+      message.error("Không thể hoàn thành booking. Vui lòng thử lại!");
+      console.error("Complete booking error:", error);
+    }
+  };
+
+  const goToNearestBooking = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const upcomingBookings = bookings
+      .filter((bk) => {
+        if (!bk?.scheduled_date) return false;
+        const bkDate = new Date(bk.scheduled_date);
+        bkDate.setHours(0, 0, 0, 0);
+        return bkDate >= today;
+      })
+      .sort((a, b) => new Date(a.scheduled_date) - new Date(b.scheduled_date));
+
+    if (upcomingBookings.length > 0) {
+      const nearestDate = new Date(upcomingBookings[0].scheduled_date);
+      setSelectedDate(nearestDate);
+      setAnchorDate(nearestDate);
+      message.success("Đã chuyển đến booking gần nhất!");
+    } else {
+      message.info("Không có booking nào sắp tới!");
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
+        setShowDatePicker(false);
+      }
+    };
+
+    if (showDatePicker) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDatePicker]);
 
   return (
     <div className="max-w-5xl mx-auto">
+      <div className="flex items-center justify-between mb-4">
+        <button
+          onClick={goToNearestBooking}
+          className="flex items-center gap-2 px-4 py-2 bg-[#FF9500] hover:bg-[#FF9500]/80 text-white rounded-lg font-semibold transition-colors"
+        >
+          <CalendarCheck className="w-4 h-4" />
+          Booking gần nhất
+        </button>
+      </div>
+
       <div className="flex items-center justify-between mb-6">
         <button onClick={() => handleWeekShift(-1)} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700">
           <ChevronLeft className="w-5 h-5 text-white" />
@@ -138,9 +197,37 @@ export default function MyRentals() {
           })}
         </div>
 
-        <button onClick={() => handleWeekShift(1)} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700">
-          <ChevronRight className="w-5 h-5 text-white" />
-        </button>
+        <div className="flex items-center gap-2">
+          <div className="relative" ref={datePickerRef}>
+            <button
+              onClick={() => setShowDatePicker(!showDatePicker)}
+              className="p-2 rounded-full bg-[#FF9500] hover:bg-[#FF9500]/80 transition-colors"
+              title="Chọn ngày"
+            >
+              <Calendar className="w-5 h-5 text-white" />
+            </button>
+
+            {showDatePicker && (
+              <div className="absolute right-0 mt-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700 p-4 z-50 min-w-[280px]">
+                <input
+                  type="date"
+                  value={selectedDate.toISOString().split('T')[0]}
+                  onChange={(e) => {
+                    const newDate = new Date(e.target.value);
+                    if (!isNaN(newDate.getTime())) {
+                      handleDatePickerSelect(newDate);
+                    }
+                  }}
+                  className="w-full px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:border-[#FF9500] focus:ring-1 focus:ring-[#FF9500]"
+                />
+              </div>
+            )}
+          </div>
+
+          <button onClick={() => handleWeekShift(1)} className="p-2 rounded-full bg-gray-800 hover:bg-gray-700">
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
+        </div>
       </div>
 
       {loading ? (
@@ -158,9 +245,12 @@ export default function MyRentals() {
             const serviceId = bk?.service_id?._id || bk?.service_id;
             const service = serviceMap[serviceId] || bk?.service_id || {};
             const price = bk?.amount ?? service?.amount ?? 0;
+            const canComplete =
+              bk?.status === BOOKING_STATUS_OPTIONS.REQUESTED ||
+              bk?.status === BOOKING_STATUS_OPTIONS.PAYING;
 
             return (
-              <div key={bk._id} className="bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors">
+              <div key={bk._id} className="bg-gray-800 rounded-lg p-6 hover:bg-gray-750 transition-colors mb-4">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-3">
@@ -201,36 +291,39 @@ export default function MyRentals() {
                       </div>
                     </div>
 
-                    <div className="mt-3 text-[#FF9500] text-xl font-bold">
-                      Mức giá: {new Intl.NumberFormat("vi-VN").format(price)} VND
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="text-[#FF9500] text-xl font-bold">
+                        Mức giá: {new Intl.NumberFormat("vi-VN").format(price)} VND
+                      </div>
+
+                      {canComplete && (
+                        <Popconfirm
+                          title="Xác nhận hoàn thành"
+                          description="Bạn có chắc chắn muốn đánh dấu booking này là đã hoàn thành?"
+                          onConfirm={() => handleCompleteBooking(bk._id)}
+                          okText="Xác nhận"
+                          cancelText="Hủy"
+                          okButtonProps={{ className: "bg-[#FF9500] hover:bg-[#FF9500]/80" }}
+                        >
+                          <button className="flex items-center gap-2 px-4 py-2 bg-green-600 cursor-pointer hover:bg-green-700 text-white rounded-lg font-semibold transition-colors">
+                            <CheckCircle className="w-4 h-4" />
+                            Hoàn thành
+                          </button>
+                        </Popconfirm>
+                      )}
+
+                      {bk?.status === BOOKING_STATUS_OPTIONS.COMPLETED && (
+                        <div className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-gray-300 rounded-lg">
+                          <CheckCircle className="w-4 h-4" />
+                          Đã hoàn thành
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             );
           })
-      )}
-
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center space-x-2 mt-6">
-          <button
-            onClick={() => handlePageChange(pagination.page - 1)}
-            disabled={pagination.page === 1}
-            className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600"
-          >
-            Trước
-          </button>
-          <span className="text-gray-300">
-            Trang {pagination.page} / {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(pagination.page + 1)}
-            disabled={pagination.page === totalPages}
-            className="px-4 py-2 bg-gray-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600"
-          >
-            Sau
-          </button>
-        </div>
       )}
     </div>
   );
